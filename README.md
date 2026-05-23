@@ -5,12 +5,14 @@ Estruturas de Dados: HASH, Arvore B(B+), Trie
 
 # desafio-na-cozinha
 
-python3 -m venv .venv
+`python3 -m venv .venv`
 
-## Windows
+Windows:
 
 `.venv\Scripts\Activate.ps1`
-
+or
 `.venv\Scripts\activate.bat`
 
-## Linux: `source .venv/bin/activate`
+Linux: 
+
+`source .venv/bin/activate`
