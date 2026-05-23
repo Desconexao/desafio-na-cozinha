@@ -13,6 +13,6 @@ Windows:
 or
 `.venv\Scripts\activate.bat`
 
-Linux: 
+Linux:
 
 `source .venv/bin/activate`
