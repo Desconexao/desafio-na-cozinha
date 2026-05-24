@@ -45,6 +45,9 @@ class RecipeBook:
                     self._insertIntoBTreeIndex(
                         self.recipesByPrepTime, recipe.prepTime, recipe
                     )
+                    self._insertIntoBTreeIndex(
+                        self.recipesByDifficulty, recipe.difficulty, recipe
+                    )
 
             print(f"Success: {len(self.recipesById.getAll())} recipes loaded.")
         except Exception as e:
@@ -109,3 +112,100 @@ class RecipeBook:
             return
 
         current.append(recipe)
+
+    def suggestIdealRecipes(self, maxCost, maxPrepTime, difficultyLevel):
+        # Build candidate lists from each criterion
+        costRecipes = self._getRecipesUpTo(self.recipesByCost, maxCost)
+        prepTimeRecipes = self._getRecipesUpTo(self.recipesByPrepTime, maxPrepTime)
+        difficultyRecipes = self._getRecipesByDifficultyLevel(difficultyLevel)
+
+        # Convert to sets for fast intersection
+        costIds = set([recipe.id for recipe in costRecipes])
+        prepTimeIds = set([recipe.id for recipe in prepTimeRecipes])
+        difficultyIds = set([recipe.id for recipe in difficultyRecipes])
+
+        # Keep only recipes present in all three filters (intersection)
+        commonIds = costIds.intersection(prepTimeIds).intersection(difficultyIds)
+        if not commonIds:
+            return []
+
+        # Rebuild recipe objects and rank by rating
+        result = []
+        for recipe in self.listAllRecipes():
+            if recipe.id in commonIds:
+                result.append(recipe)
+
+        result.sort(key=lambda recipe: recipe.rating, reverse=True)
+        return result
+
+    def _getRecipesUpTo(self, tree: BTree, maxValue):
+        result = []
+        items = tree.toList()
+
+        # B-Tree is already ordered, collect keys up to maxValue
+        for key, recipes in items:
+            if key <= maxValue:
+                result.extend(recipes)
+
+        return result
+
+    def _getRecipesByDifficultyLevel(self, level):
+        # Fixed buckets: 0 easy, 1 medium, 2 hard
+        difficultyBuckets = [[], [], []]
+        for recipe in self.listAllRecipes():
+            bucketIndex = self._mapDifficultyToLevel(recipe.difficulty)
+            if bucketIndex is None:
+                continue
+            difficultyBuckets[bucketIndex].append(recipe)
+
+        if level < 0 or level > 2:
+            return []
+
+        return difficultyBuckets[level]
+
+    def _mapDifficultyToLevel(self, difficulty):
+        text = str(difficulty).lower()
+        if text == "fácil":
+            return 0
+        if text == "média":
+            return 1
+        if text == "difícil":
+            return 2
+        if text == "easy":
+            return 0
+        if text == "medium":
+            return 1
+        if text == "hard":
+            return 2
+        return None
+
+    def generateRecipeCombination(self, objective, maxCost, maxPrepTime):
+        if objective == "economic":
+            candidates = self._getRecipesUpTo(self.recipesByCost, maxCost)
+            candidates.sort(key=lambda recipe: (recipe.cost, recipe.prepTime))
+        elif objective == "fast":
+            candidates = self._getRecipesUpTo(self.recipesByPrepTime, maxPrepTime)
+            candidates.sort(key=lambda recipe: (recipe.prepTime, recipe.cost))
+        else:
+            return []
+
+        selected = []
+        usedIds = set()
+        totalCost = 0.0
+        totalPrepTime = 0
+
+        # Greedy: pick best local candidate while constraints are valid
+        for recipe in candidates:
+            if recipe.id in usedIds:
+                continue
+            if totalCost + recipe.cost > maxCost:
+                continue
+            if totalPrepTime + recipe.prepTime > maxPrepTime:
+                continue
+
+            selected.append(recipe)
+            usedIds.add(recipe.id)
+            totalCost += recipe.cost
+            totalPrepTime += recipe.prepTime
+
+        return selected

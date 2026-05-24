@@ -21,6 +21,8 @@ def showInvestigationModeMenu():
 
 def showChefModeMenu():
     print("\n=== Modo Chef ===")
+    print("1. Get My Ideal Dish")
+    print("2. Generate Recipe Combination")
     print("0. Back")
     return input("Choose an option: ")
 
@@ -154,6 +156,69 @@ def searchRecipeByIngredient():
         print(f"ID: {recipe.id} - {recipe.name}")
 
 
+def getMyIdealDish():
+    try:
+        maxCost = float(input("Enter max price: "))
+        maxPrepTime = int(input("Enter max prep time: "))
+        difficultyLevel = int(input("Enter difficulty (0 easy, 1 medium, 2 hard): "))
+    except ValueError:
+        print("Invalid value.")
+        return
+
+    suggestions = book.suggestIdealRecipes(maxCost, maxPrepTime, difficultyLevel)
+    if not suggestions:
+        print("No matching recipes found.")
+        return
+
+    print("\n--- Best Suggestions ---")
+    for i, recipe in enumerate(suggestions, start=1):
+        print(
+            f"{i}. ID: {recipe.id} - {recipe.name} | "
+            f"Rating: {recipe.rating} | Cost: {recipe.cost} | PrepTime: {recipe.prepTime}"
+        )
+
+
+def generateRecipeCombination():
+    print("\nChoose objective:")
+    print("1. Economic Menu")
+    print("2. Fast Menu")
+    objectiveChoice = input("Choose an option: ")
+
+    if objectiveChoice == "1":
+        objective = "economic"
+    elif objectiveChoice == "2":
+        objective = "fast"
+    else:
+        print("Invalid option.")
+        return
+
+    try:
+        maxCost = float(input("Enter max total cost: "))
+        maxPrepTime = int(input("Enter max total prep time: "))
+    except ValueError:
+        print("Invalid value.")
+        return
+
+    recipes = book.generateRecipeCombination(objective, maxCost, maxPrepTime)
+    if not recipes:
+        print("No combination found for this objective.")
+        return
+
+    print("\n--- Suggested Combination ---")
+    totalCost = 0.0
+    totalPrepTime = 0
+    for i, recipe in enumerate(recipes, start=1):
+        totalCost += recipe.cost
+        totalPrepTime += recipe.prepTime
+        print(
+            f"{i}. ID: {recipe.id} - {recipe.name} | "
+            f"Cost: {recipe.cost} | PrepTime: {recipe.prepTime} | Rating: {recipe.rating}"
+        )
+
+    print(f"Total Cost: {totalCost}")
+    print(f"Total PrepTime: {totalPrepTime}")
+
+
 def runMenu(bookParam, jsonPathParam):
     global book
     global jsonPath
@@ -204,6 +269,10 @@ def chefModeMenu():
         #print("\033[H\033[J", end="")
 
         match choice:
+            case "1":
+                getMyIdealDish()
+            case "2":
+                generateRecipeCombination()
             case "0":
                 print("Exiting mode...")
                 break
