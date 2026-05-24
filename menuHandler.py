@@ -3,6 +3,7 @@ from recipeBook import RecipeBook
 book: RecipeBook
 jsonPath: str
 
+
 def showMenu():
     print("\n=== Desafio na Cozinha ===")
     print("1. Investigation Mode")
@@ -10,6 +11,7 @@ def showMenu():
     print("3. Quick Search Mode")
     print("0. Exit")
     return input("Choose an option: ")
+
 
 def showInvestigationModeMenu():
     print("\n=== Modo Investigação ===")
@@ -19,12 +21,14 @@ def showInvestigationModeMenu():
     print("0. Back")
     return input("Choose an option: ")
 
+
 def showChefModeMenu():
     print("\n=== Modo Chef ===")
     print("1. Get My Ideal Dish")
     print("2. Generate Recipe Combination")
     print("0. Back")
     return input("Choose an option: ")
+
 
 def showQuickSearchModeMenu():
     print("\n=== Modo Busca Rápida ===")
@@ -93,6 +97,7 @@ def searchRecipeByName():
     print("Did you mean?")
     for recipe in result:
         print(f"{recipe.id} - {recipe.name}")
+
 
 def searchRecipeByCategory():
     categories = book.recipesByCategory.getKeys()
@@ -226,10 +231,8 @@ def runMenu(bookParam, jsonPathParam):
     book = bookParam
     jsonPath = jsonPathParam
 
-    #print("\033[H\033[J", end="")
     while True:
         choice = showMenu()
-        #print("\033[H\033[J", end="")
 
         match choice:
             case "1":
@@ -248,7 +251,6 @@ def runMenu(bookParam, jsonPathParam):
 def investigationModeMenu():
     while True:
         choice = showInvestigationModeMenu()
-        #print("\033[H\033[J", end="")
 
         match choice:
             case "1":
@@ -263,10 +265,10 @@ def investigationModeMenu():
             case _:
                 print("Invalid option.")
 
+
 def chefModeMenu():
     while True:
         choice = showChefModeMenu()
-        #print("\033[H\033[J", end="")
 
         match choice:
             case "1":
@@ -279,10 +281,10 @@ def chefModeMenu():
             case _:
                 print("Invalid option.")
 
+
 def quickSearchModeMenu():
     while True:
         choice = showQuickSearchModeMenu()
-        #print("\033[H\033[J", end="")
 
         match choice:
             case "1":

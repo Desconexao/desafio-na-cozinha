@@ -1,0 +1,912 @@
+[
+  {
+    "id": 1,
+    "name": "Bolo de Cenoura",
+    "category": "Sobremesa",
+    "ingredients": [
+      "Cenoura",
+      "Ovos",
+      "Óleo",
+      "Açúcar",
+      "Farinha",
+      "Fermento",
+      "Chocolate"
+    ],
+    "instructions": "Bata as cenouras com óleo e ovos. Misture o açúcar e a farinha. Asse por 40 minutos.",
+    "prepTime": 60,
+    "cost": 25.5,
+    "difficulty": "Fácil",
+    "rating": 4.8,
+    "integrityHash": "61882899d1dd16482b479e757312f8355bd80a004653bd79580eb5ede2294272"
+  },
+  {
+    "id": 2,
+    "name": "Lasanha à Bolonhesa",
+    "category": "Massa",
+    "ingredients": [
+      "Massa de lasanha",
+      "Carne moída",
+      "Molho de tomate",
+      "Queijo mussarela",
+      "Presunto"
+    ],
+    "instructions": "Monte as camadas de massa, molho e queijo. Asse até gratinar.",
+    "prepTime": 90,
+    "cost": 45.0,
+    "difficulty": "Média",
+    "rating": 4.9,
+    "integrityHash": "8ec159ff623a32b7f59008d8b3f2ae9a49226296ef2db24640cc57dc25d1d961"
+  },
+  {
+    "id": 3,
+    "name": "Salada Caesar",
+    "category": "Salada",
+    "ingredients": [
+      "Alface romana",
+      "Croutons",
+      "Queijo parmesão",
+      "Molho Caesar",
+      "Frango grelhado"
+    ],
+    "instructions": "Misture as folhas com o molho e adicione o frango e os croutons.",
+    "prepTime": 20,
+    "cost": 30.0,
+    "difficulty": "Fácil",
+    "rating": 4.5,
+    "integrityHash": "ed100abcdea9cca5b95212a8f5dafbc411ffb8b5d55bc1f90fd7b55aa84fef97"
+  },
+  {
+    "id": 4,
+    "name": "Feijoada",
+    "category": "Brasileira",
+    "ingredients": [
+      "Feijão preto",
+      "Carne de porco",
+      "Linguiça calabresa",
+      "Paio",
+      "Arroz",
+      "Couve"
+    ],
+    "instructions": "Cozinhe o feijão com as carnes por 3 horas. Sirva com arroz e couve.",
+    "prepTime": 180,
+    "cost": 65.0,
+    "difficulty": "Difícil",
+    "rating": 5.0,
+    "integrityHash": "481ccf232a388527407b64b162956139e489adc085ed104a954b6844bf27770c"
+  },
+  {
+    "id": 5,
+    "name": "Strogonoff de Frango",
+    "category": "Acompanhamento",
+    "ingredients": [
+      "Peito de frango",
+      "Creme de leite",
+      "Ketchup",
+      "Mostarda",
+      "Champignon",
+      "Batata palha"
+    ],
+    "instructions": "Refogue o frango, adicione os molhos e finalize com creme de leite.",
+    "prepTime": 30,
+    "cost": 35.0,
+    "difficulty": "Fácil",
+    "rating": 4.7,
+    "integrityHash": "e643b6981400557ff21e0dc1fb9be411abb44ebddddec21da864be818c28612a"
+  },
+  {
+    "id": 6,
+    "name": "Risoto de Cogumelos",
+    "category": "Arroz",
+    "ingredients": [
+      "Arroz arbóreo",
+      "Vinho branco",
+      "Cogumelos",
+      "Caldo de legumes",
+      "Manteiga",
+      "Parmesão"
+    ],
+    "instructions": "Adicione o caldo aos poucos mexendo sempre até o arroz ficar al dente.",
+    "prepTime": 45,
+    "cost": 50.0,
+    "difficulty": "Média",
+    "rating": 4.6,
+    "integrityHash": "f45b7dd50293a480664bc95a8f9e39b63f5281a5a2d5da2642fa2a824a009808"
+  },
+  {
+    "id": 7,
+    "name": "Hambúrguer Artesana",
+    "category": "Lanche",
+    "ingredients": [
+      "Pão de brioche",
+      "Carne bovina",
+      "Queijo cheddar",
+      "Bacon",
+      "Cebola caramelizada"
+    ],
+    "instructions": "Grelhe a carne, monte o hambúrguer com queijo e bacon no pão tostado.",
+    "prepTime": 25,
+    "cost": 28.0,
+    "difficulty": "Fácil",
+    "rating": 4.8,
+    "integrityHash": "3310efd33c7b7df37c39ed8ff5e58240b28a2ef626cf48c111780f59f821e0c8"
+  },
+  {
+    "id": 8,
+    "name": "Sopa de Lentilha",
+    "category": "Sopa",
+    "ingredients": [
+      "Lentilha",
+      "Cenoura",
+      "Batata",
+      "Bacon",
+      "Cebola",
+      "Alho"
+    ],
+    "instructions": "Cozinhe a lentilha com os legumes e bacon refogado até amaciar.",
+    "prepTime": 40,
+    "cost": 18.0,
+    "difficulty": "Fácil",
+    "rating": 4.3,
+    "integrityHash": "b0e42911934d8531662fabb3008f44ec88612fdb5e3288c537ee67018d6ca4df"
+  },
+  {
+    "id": 9,
+    "name": "Moqueca de Peixe",
+    "category": "Peixe",
+    "ingredients": [
+      "Peixe branco",
+      "Leite de coco",
+      "Azeite de dendê",
+      "Pimentão",
+      "Cebola",
+      "Coentro"
+    ],
+    "instructions": "Cozinhe o peixe com os vegetais no leite de coco e dendê em fogo baixo.",
+    "prepTime": 50,
+    "cost": 75.0,
+    "difficulty": "Média",
+    "rating": 4.9,
+    "integrityHash": "82e6ff946e6b9863cac658654a53c4fcbbb9d9f5c2cf2220d8a73ca12fd4fb8b"
+  },
+  {
+    "id": 10,
+    "name": "Penne à Carbonara",
+    "category": "Massa",
+    "ingredients": [
+      "Macarrão penne",
+      "Ovos",
+      "Parmesão",
+      "Guanciale ou Bacon",
+      "Pimenta do reino"
+    ],
+    "instructions": "Misture a massa quente com os ovos e queijo batidos para criar um molho cremoso.",
+    "prepTime": 15,
+    "cost": 32.0,
+    "difficulty": "Média",
+    "rating": 4.7,
+    "integrityHash": "a9d4bede4d6478401566a733f771fb0faae80b6871bf03b20a050ad740a35218"
+  },
+  {
+    "id": 11,
+    "name": "Torta de Frango",
+    "category": "Torta",
+    "ingredients": [
+      "Farinha",
+      "Manteiga",
+      "Frango desfiado",
+      "Requeijão",
+      "Azeitonas"
+    ],
+    "instructions": "Prepare a massa podre, recheie com o frango e requeijão e asse.",
+    "prepTime": 70,
+    "cost": 40.0,
+    "difficulty": "Média",
+    "rating": 4.6,
+    "integrityHash": "4ec3ed193604ebbb7b27009ae51df12dac153b7f1d435884218a933554998530"
+  },
+  {
+    "id": 12,
+    "name": "Guacamole",
+    "category": "Entrada",
+    "ingredients": [
+      "Abacate",
+      "Cebola roxa",
+      "Tomate",
+      "Limão",
+      "Coentro",
+      "Pimenta"
+    ],
+    "instructions": "Amasse o abacate e misture com os ingredientes picados e o suco de limão.",
+    "prepTime": 10,
+    "cost": 22.0,
+    "difficulty": "Fácil",
+    "rating": 4.5,
+    "integrityHash": "06eea9123810dfffa264b20ebe18f0bcba88cc669adbc7fcf81018ecb6090b14"
+  },
+  {
+    "id": 13,
+    "name": "Sushi - Salmão Roll",
+    "category": "Japonesa",
+    "ingredients": [
+      "Arroz japonês",
+      "Nori",
+      "Salmão",
+      "Cream cheese",
+      "Pepino"
+    ],
+    "instructions": "Espalhe o arroz no nori, adicione o recheio e enrole com a esteira.",
+    "prepTime": 60,
+    "cost": 85.0,
+    "difficulty": "Difícil",
+    "rating": 4.8,
+    "integrityHash": "5f0c948adf35129ccd4ac962f9c3f6259620a3a74af7062b7603741ffae7bd24"
+  },
+  {
+    "id": 14,
+    "name": "Omelete de Ervas",
+    "category": "Ovos",
+    "ingredients": [
+      "Ovos",
+      "Salsinha",
+      "Cebolinha",
+      "Queijo",
+      "Sal",
+      "Manteiga"
+    ],
+    "instructions": "Bata os ovos com as ervas e frite na manteiga em fogo baixo.",
+    "prepTime": 10,
+    "cost": 12.0,
+    "difficulty": "Fácil",
+    "rating": 4.4,
+    "integrityHash": "ae6479a7c7e23efd9f1115a043f5a60250d0949697985be3e2a427a442273918"
+  },
+  {
+    "id": 15,
+    "name": "Filé Mignon ao Molho Madeira",
+    "category": "Carne",
+    "ingredients": [
+      "Filé mignon",
+      "Vinho madeira",
+      "Caldo de carne",
+      "Champignon",
+      "Manteiga"
+    ],
+    "instructions": "Grelhe a carne e prepare o molho na mesma panela para aproveitar o sabor.",
+    "prepTime": 40,
+    "cost": 95.0,
+    "difficulty": "Média",
+    "rating": 4.9,
+    "integrityHash": "2db54a6ef833e8d44a7d3f5cba4bfb8e7d81d4472a5de741d6e0ed925646ece6"
+  },
+  {
+    "id": 16,
+    "name": "Pudim de Leite Condensado",
+    "category": "Sobremesa",
+    "ingredients": [
+      "Leite condensado",
+      "Leite",
+      "Ovos",
+      "Açúcar (para a calda)"
+    ],
+    "instructions": "Bata os ingredientes, despeje na forma caramelizada e asse em banho-maria.",
+    "prepTime": 90,
+    "cost": 20.0,
+    "difficulty": "Fácil",
+    "rating": 5.0,
+    "integrityHash": "24fae6e3e644f379de4e665142f92d3165b054900b5594caec6ba25a84384f9a"
+  },
+  {
+    "id": 17,
+    "name": "Espaguete ao Pesto",
+    "category": "Massa",
+    "ingredients": [
+      "Espaguete",
+      "Manjericão",
+      "Pinoli ou Castanha",
+      "Parmesão",
+      "Azeite",
+      "Alho"
+    ],
+    "instructions": "Triture os ingredientes do pesto e misture à massa cozida.",
+    "prepTime": 20,
+    "cost": 38.0,
+    "difficulty": "Fácil",
+    "rating": 4.7,
+    "integrityHash": "b22394331d83c929fb4c712aef22698c761e3f0eed4f934d6baaed8015157395"
+  },
+  {
+    "id": 18,
+    "name": "Ratatouille",
+    "category": "Vegetariana",
+    "ingredients": [
+      "Berinjela",
+      "Abobrinha",
+      "Tomate",
+      "Pimentão",
+      "Alho",
+      "Ervas de Provence"
+    ],
+    "instructions": "Fatie os vegetais finamente e asse com molho de tomate e ervas.",
+    "prepTime": 80,
+    "cost": 35.0,
+    "difficulty": "Média",
+    "rating": 4.6,
+    "integrityHash": "eadb930c0590d8e152b538fd394ecc77c312f94d653c2fc9e388424e77f65b45"
+  },
+  {
+    "id": 19,
+    "name": "Camarão na Moranga",
+    "category": "Frutos do Mar",
+    "ingredients": [
+      "Abóbora moranga",
+      "Camarão",
+      "Requeijão",
+      "Leite de coco",
+      "Tomate"
+    ],
+    "instructions": "Cozinhe o camarão cremoso e sirva dentro da abóbora assada.",
+    "prepTime": 120,
+    "cost": 110.0,
+    "difficulty": "Difícil",
+    "rating": 4.9,
+    "integrityHash": "7b00e509c0b4d9cd194013418f4d66946c0d38d4aa67dcfd541add09089f89ee"
+  },
+  {
+    "id": 20,
+    "name": "Frango Xadrez",
+    "category": "Chinesa",
+    "ingredients": [
+      "Peito de frango",
+      "Pimentão",
+      "Cebola",
+      "Amendoim",
+      "Molho shoyu"
+    ],
+    "instructions": "Corte tudo em cubos e refogue rapidamente no wok com shoyu.",
+    "prepTime": 30,
+    "cost": 42.0,
+    "difficulty": "Média",
+    "rating": 4.6,
+    "integrityHash": "07a676c93be1bfce93d9b6ef903b35eeabed652dfd055d8147ed72c39e731b91"
+  },
+  {
+    "id": 21,
+    "name": "Panqueca de Carne",
+    "category": "Carne",
+    "ingredients": [
+      "Farinha",
+      "Ovos",
+      "Leite",
+      "Carne moída",
+      "Molho de tomate"
+    ],
+    "instructions": "Faça os discos de massa, recheie com carne e cubra com molho.",
+    "prepTime": 40,
+    "cost": 28.0,
+    "difficulty": "Fácil",
+    "rating": 4.7,
+    "integrityHash": "07adbbbdc2fcabb22eab2f0fb9a4dd938054915af542886c8eec05b3313a8790"
+  },
+  {
+    "id": 22,
+    "name": "Yakissoba",
+    "category": "Japonesa",
+    "ingredients": [
+      "Macarrão para yakissoba",
+      "Carne",
+      "Frango",
+      "Acelga",
+      "Brócolis",
+      "Shoyu"
+    ],
+    "instructions": "Refogue carnes e vegetais, adicione o macarrão e o molho espesso.",
+    "prepTime": 35,
+    "cost": 45.0,
+    "difficulty": "Média",
+    "rating": 4.8,
+    "integrityHash": "5446404f595dc04efe63f7d265264582d36d29516ff33e93e9cbd7783ceee7e2"
+  },
+  {
+    "id": 23,
+    "name": "Mousse de Chocolate",
+    "category": "Sobremesa",
+    "ingredients": [
+      "Chocolate meio amargo",
+      "Claras em neve",
+      "Creme de leite",
+      "Açúcar"
+    ],
+    "instructions": "Misture o chocolate derretido com creme e incorpore as claras delicadamente.",
+    "prepTime": 30,
+    "cost": 22.0,
+    "difficulty": "Fácil",
+    "rating": 4.7,
+    "integrityHash": "2ea0ccf96108b4fe5f777811369ffc23380e9dc3d43ad1248dc9b1f088b3c958"
+  },
+  {
+    "id": 24,
+    "name": "Salpicão de Frango",
+    "category": "Salada",
+    "ingredients": [
+      "Frango desfiado",
+      "Maionese",
+      "Milho",
+      "Ervilha",
+      "Cenoura",
+      "Batata palha"
+    ],
+    "instructions": "Misture os ingredientes frios e finalize com batata palha por cima.",
+    "prepTime": 25,
+    "cost": 30.0,
+    "difficulty": "Fácil",
+    "rating": 4.6,
+    "integrityHash": "a959639a68e5964bd01281b7cfe5935705d7e60bb0380a20a43130e0cb751fb7"
+  },
+  {
+    "id": 25,
+    "name": "Paella",
+    "category": "Espanhola",
+    "ingredients": [
+      "Arroz bomba",
+      "Açafrão",
+      "Frutos do mar",
+      "Frango",
+      "Chouriço"
+    ],
+    "instructions": "Cozinhe o arroz com açafrão e as proteínas em uma panela larga.",
+    "prepTime": 90,
+    "cost": 130.0,
+    "difficulty": "Difícil",
+    "rating": 4.9,
+    "integrityHash": "082b7e317e8f828c9757b7b7196de38f2e8e6d1abfd7692539a6bfe98535e857"
+  },
+  {
+    "id": 26,
+    "name": "Quiche de Alho Poró",
+    "category": "Torta",
+    "ingredients": [
+      "Massa quebrada",
+      "Alho poró",
+      "Ovos",
+      "Creme de leite",
+      "Queijo"
+    ],
+    "instructions": "Recheie a massa com o creme e alho poró refogado e asse.",
+    "prepTime": 60,
+    "cost": 38.0,
+    "difficulty": "Média",
+    "rating": 4.7,
+    "integrityHash": "77b1457cc3c8b4b87c77683de39908509ab5752c4d09e2be5b0f9c9aa1caaa21"
+  },
+  {
+    "id": 27,
+    "name": "Ceviche",
+    "category": "Entrada",
+    "ingredients": [
+      "Tilápia",
+      "Limão",
+      "Cebola roxa",
+      "Pimenta dedo de moça",
+      "Coentro"
+    ],
+    "instructions": "Marine o peixe em cubos no suco de limão com temperos por 15 minutos.",
+    "prepTime": 20,
+    "cost": 45.0,
+    "difficulty": "Fácil",
+    "rating": 4.8,
+    "integrityHash": "120542c6eca469eb2e1dc60fb98b119066293bcdf00c4d5d662d8b658e8e120d"
+  },
+  {
+    "id": 28,
+    "name": "Bruschetta de Tomate",
+    "category": "Entrada",
+    "ingredients": [
+      "Pão italiano",
+      "Tomate",
+      "Manjericão",
+      "Azeite",
+      "Alho"
+    ],
+    "instructions": "Esfregue alho no pão tostado e cubra com tomates temperados.",
+    "prepTime": 15,
+    "cost": 18.0,
+    "difficulty": "Fácil",
+    "rating": 4.6,
+    "integrityHash": "91bce8ab7fedeab63171e5d72c01d0b5d9713925ee304ffc4b9116775d291caa"
+  },
+  {
+    "id": 29,
+    "name": "Nhoque de Batata",
+    "category": "Massa",
+    "ingredients": [
+      "Batata",
+      "Farinha de trigo",
+      "Ovo",
+      "Sal",
+      "Molho de tomate"
+    ],
+    "instructions": "Faça a massa de batata, molde os nhoques e cozinhe em água fervente.",
+    "prepTime": 60,
+    "cost": 25.0,
+    "difficulty": "Média",
+    "rating": 4.8,
+    "integrityHash": "d30f60d45dc53a800eb11a043f875c6d4898c0edc48479c7e9abf25f8d3b4476"
+  },
+  {
+    "id": 30,
+    "name": "Tacos Mexicanos",
+    "category": "Mexicana",
+    "ingredients": [
+      "Tortilhas",
+      "Carne moída temperada",
+      "Alface",
+      "Queijo",
+      "Pico de gallo"
+    ],
+    "instructions": "Aqueça as tortilhas e monte com a carne e acompanhamentos frescos.",
+    "prepTime": 30,
+    "cost": 35.0,
+    "difficulty": "Fácil",
+    "rating": 4.7,
+    "integrityHash": "1b00503e1f69ba88b23a64016afda106b364a65d8562cc4e12e2c59a753283b6"
+  },
+  {
+    "id": 31,
+    "name": "Falafel",
+    "category": "Vegetariana",
+    "ingredients": [
+      "Grão de bico",
+      "Alho",
+      "Cebola",
+      "Salsa",
+      "Cominho",
+      "Coriandro"
+    ],
+    "instructions": "Processe o grão de bico com temperos, molde bolinhos e frite.",
+    "prepTime": 40,
+    "cost": 22.0,
+    "difficulty": "Média",
+    "rating": 4.5,
+    "integrityHash": "e8f6e8ce4e6e73ffb7e75010eede7a6784b9ccfeb114063a68b30d6a3e27df25"
+  },
+  {
+    "id": 32,
+    "name": "Batata Gratinada",
+    "category": "Acompanhamento",
+    "ingredients": [
+      "Batatas",
+      "Creme de leite",
+      "Alho",
+      "Queijo parmesão",
+      "Manteiga"
+    ],
+    "instructions": "Fatie batatas, intercale com creme e queijo e asse até dourar.",
+    "prepTime": 50,
+    "cost": 24.0,
+    "difficulty": "Fácil",
+    "rating": 4.7,
+    "integrityHash": "4b7d80ec0f5192e6c94df332d7e6b103ef40aba58ce52db6fc50ffe6a68ea095"
+  },
+  {
+    "id": 33,
+    "name": "Polenta com Ragu",
+    "category": "Carne",
+    "ingredients": [
+      "Fubá",
+      "Água",
+      "Manteiga",
+      "Carne de panela desfiada",
+      "Molho de tomate"
+    ],
+    "instructions": "Cozinhe a polenta até ficar cremosa e cubra com o ragu de carne.",
+    "prepTime": 50,
+    "cost": 32.0,
+    "difficulty": "Média",
+    "rating": 4.8,
+    "integrityHash": "9b4e7c05458475849cbd5e1d2c0bcc6d1ded051cffc4e19dd5844bb668903623"
+  },
+  {
+    "id": 34,
+    "name": "Cheesecake de Frutas Vermelhas",
+    "category": "Sobremesa",
+    "ingredients": [
+      "Cream cheese",
+      "Biscoito maria",
+      "Manteiga",
+      "Açúcar",
+      "Geleia de morango"
+    ],
+    "instructions": "Faça a base de biscoito, cubra com o creme e asse em banho-maria.",
+    "prepTime": 90,
+    "cost": 48.0,
+    "difficulty": "Média",
+    "rating": 4.9,
+    "integrityHash": "1c1d2460c7ec0585e8c5b81cf9a602a6f2b1e800a61c8168835cbeee067b4962"
+  },
+  {
+    "id": 35,
+    "name": "Salmão Grelhado com Aspargos",
+    "category": "Peixe",
+    "ingredients": [
+      "Posta de salmão",
+      "Aspargos",
+      "Limão siciliano",
+      "Azeite",
+      "Sal"
+    ],
+    "instructions": "Grelhe o salmão e os aspargos com azeite e finalize com limão.",
+    "prepTime": 25,
+    "cost": 65.0,
+    "difficulty": "Fácil",
+    "rating": 4.8,
+    "integrityHash": "0ca0b8315434c9ff6b93b80e65759a336e6b7992e1b6d35a691a2592ec28b7ee"
+  },
+  {
+    "id": 36,
+    "name": "Escondidinho de Carne Seca",
+    "category": "Brasileira",
+    "ingredients": [
+      "Mandioca",
+      "Carne seca",
+      "Manteiga de garrafa",
+      "Queijo coalho"
+    ],
+    "instructions": "Faça um purê de mandioca e recheie com carne seca refogada.",
+    "prepTime": 70,
+    "cost": 45.0,
+    "difficulty": "Média",
+    "rating": 4.9,
+    "integrityHash": "c2e65551141da226b358362c9c6c72897c643bc7c4b76c8504c11121dd0656a1"
+  },
+  {
+    "id": 37,
+    "name": "Frango Assado com Batatas",
+    "category": "Acompanhamento",
+    "ingredients": [
+      "Frango inteiro",
+      "Batatas",
+      "Alecrim",
+      "Alho",
+      "Azeite"
+    ],
+    "instructions": "Tempere o frango e as batatas e asse até ficar dourado e suculento.",
+    "prepTime": 90,
+    "cost": 35.0,
+    "difficulty": "Fácil",
+    "rating": 4.6,
+    "integrityHash": "3ded6f245eb1643049c17ad7cc8478e0e02d9e5af435280658227dff0f2c68b5"
+  },
+  {
+    "id": 38,
+    "name": "Pão de Queijo",
+    "category": "Lanche",
+    "ingredients": [
+      "Polvilho doce",
+      "Polvilho azedo",
+      "Queijo minas",
+      "Ovos",
+      "Leite",
+      "Óleo"
+    ],
+    "instructions": "Escalde o polvilho, misture o queijo e ovos, modele e asse.",
+    "prepTime": 45,
+    "cost": 15.0,
+    "difficulty": "Média",
+    "rating": 5.0,
+    "integrityHash": "d6176ac0b74f8166baf045c492c45c3232b5055cbdb90babfe5cd28008f64bdf"
+  },
+  {
+    "id": 39,
+    "name": "Curry de Grão de Bico",
+    "category": "Vegetariana",
+    "ingredients": [
+      "Grão de bico",
+      "Leite de coco",
+      "Curry em pó",
+      "Espinafre",
+      "Tomate"
+    ],
+    "instructions": "Cozinhe o grão de bico com especiarias e leite de coco até encorpar.",
+    "prepTime": 35,
+    "cost": 28.0,
+    "difficulty": "Fácil",
+    "rating": 4.5,
+    "integrityHash": "b905fea7655d96c2c6c47c820601b306703498fbdf3147de201d696fdd8b560f"
+  },
+  {
+    "id": 40,
+    "name": "Bobó de Camarão",
+    "category": "Frutos do Mar",
+    "ingredients": [
+      "Camarão",
+      "Mandioca",
+      "Leite de coco",
+      "Azeite de dendê",
+      "Pimentão"
+    ],
+    "instructions": "Bata a mandioca cozida e misture ao refogado de camarão e coco.",
+    "prepTime": 80,
+    "cost": 85.0,
+    "difficulty": "Difícil",
+    "rating": 4.9,
+    "integrityHash": "1eab16814226bea4483667834012b8d5a9671c867565cc4c557b4e578583ac3e"
+  },
+  {
+    "id": 41,
+    "name": "Bife à Milanesa",
+    "category": "Carne",
+    "ingredients": [
+      "Bife de alcatra",
+      "Farinha de rosca",
+      "Ovo",
+      "Farinha de trigo"
+    ],
+    "instructions": "Passe a carne na farinha, ovo e rosca e frite em óleo quente.",
+    "prepTime": 30,
+    "cost": 38.0,
+    "difficulty": "Fácil",
+    "rating": 4.7,
+    "integrityHash": "b5429f9f66ed290c4d531638c1646282d7b4fdedcde6cacf1aa4055aa14f5fc8"
+  },
+  {
+    "id": 42,
+    "name": "Tiramisu",
+    "category": "Sobremesa",
+    "ingredients": [
+      "Queijo mascarpone",
+      "Café",
+      "Biscoito champagne",
+      "Cacau em pó",
+      "Ovos"
+    ],
+    "instructions": "Intercale camadas de biscoito embebido em café e creme de mascarpone.",
+    "prepTime": 40,
+    "cost": 55.0,
+    "difficulty": "Média",
+    "rating": 4.9,
+    "integrityHash": "52ca01d536dedc6aba997dae38bf5c0599d1c6eb68b59833a70663e9ed906c41"
+  },
+  {
+    "id": 43,
+    "name": "Cuscuz Marroquino",
+    "category": "Acompanhamento",
+    "ingredients": [
+      "Sêmola de trigo",
+      "Água quente",
+      "Damasco",
+      "Amêndoas",
+      "Hortelã"
+    ],
+    "instructions": "Hidrate a sêmola e misture com as castanhas e frutas secas.",
+    "prepTime": 15,
+    "cost": 30.0,
+    "difficulty": "Fácil",
+    "rating": 4.4,
+    "integrityHash": "190b484325081ff9783971ba46392d202d2da40f047fcdff91849bcd57fc817e"
+  },
+  {
+    "id": 44,
+    "name": "Canelone de Presunto e Queijo",
+    "category": "Massa",
+    "ingredients": [
+      "Massa de lasanha",
+      "Presunto",
+      "Mussarela",
+      "Molho branco",
+      "Parmesão"
+    ],
+    "instructions": "Enrole o queijo e presunto na massa e cubra com molho branco.",
+    "prepTime": 50,
+    "cost": 35.0,
+    "difficulty": "Média",
+    "rating": 4.6,
+    "integrityHash": "b5daa24726e6d99404466ff6a8e09529dd6cd4113ef5cc3cfd323666f99200d1"
+  },
+  {
+    "id": 45,
+    "name": "Hambúrguer de Grão de Bico",
+    "category": "Vegetariana",
+    "ingredients": [
+      "Grão de bico",
+      "Aveia",
+      "Cebola",
+      "Temperos frescos"
+    ],
+    "instructions": "Amasse o grão de bico, misture com aveia e temperos, modele e grelhe.",
+    "prepTime": 30,
+    "cost": 20.0,
+    "difficulty": "Fácil",
+    "rating": 4.3,
+    "integrityHash": "9d9dbb4b695bc5ce4418a0a2010e3edaacc5766331475f1a1ca9b34a95a4e6b5"
+  },
+  {
+    "id": 46,
+    "name": "Brigadeiro Gourmet",
+    "category": "Sobremesa",
+    "ingredients": [
+      "Leite condensado",
+      "Cacau 50%",
+      "Manteiga",
+      "Granulado de qualidade"
+    ],
+    "instructions": "Cozinhe em fogo baixo até desgrudar da panela, enrole e passe no granulado.",
+    "prepTime": 25,
+    "cost": 15.0,
+    "difficulty": "Fácil",
+    "rating": 5.0,
+    "integrityHash": "13aa67e1377b4fdd199826d035dd4ff22037a66688edba828ef3315faecf2cf9"
+  },
+  {
+    "id": 47,
+    "name": "Tabule",
+    "category": "Salada",
+    "ingredients": [
+      "Trigo para quibe",
+      "Tomate",
+      "Pepino",
+      "Salsinha",
+      "Hortelã",
+      "Limão"
+    ],
+    "instructions": "Hidrate o trigo e misture com os vegetais bem picadinhos.",
+    "prepTime": 20,
+    "cost": 18.0,
+    "difficulty": "Fácil",
+    "rating": 4.5,
+    "integrityHash": "174e9a99c02ac40ca90bc1f64714f425d70eb3866ff357e9e49f8c1ecb52f4a8"
+  },
+  {
+    "id": 48,
+    "name": "Carne de Panela",
+    "category": "Carne",
+    "ingredients": [
+      "Acém ou Coxão Duro",
+      "Batatas",
+      "Cenouras",
+      "Cebola",
+      "Molho de tomate"
+    ],
+    "instructions": "Cozinhe a carne na pressão com os legumes até ficar macia.",
+    "prepTime": 60,
+    "cost": 40.0,
+    "difficulty": "Fácil",
+    "rating": 4.7,
+    "integrityHash": "1a7bfdc454b7d38119b19303c6705e81fce8389021c19b4ff24b4fbc202cd4b0"
+  },
+  {
+    "id": 49,
+    "name": "Pipoca Gourmet de Leite Ninho",
+    "category": "Lanche",
+    "ingredients": [
+      "Milho de pipoca",
+      "Açúcar",
+      "Água",
+      "Leite Ninho",
+      "Chocolate Branco"
+    ],
+    "instructions": "Estoure a pipoca, faça o caramelo, cubra com chocolate e leite em pó.",
+    "prepTime": 20,
+    "cost": 12.0,
+    "difficulty": "Média",
+    "rating": 4.8,
+    "integrityHash": "b05741aaed494813a5f8c263be25d0dbe4237b26449aaf5ebf89b6dbc00e5bcf"
+  },
+  {
+    "id": 50,
+    "name": "Tempurá de Legumes",
+    "category": "Japonesa",
+    "ingredients": [
+      "Cenoura",
+      "Abobrinha",
+      "Cebola",
+      "Farinha de trigo",
+      "Água gelada"
+    ],
+    "instructions": "Passe os legumes em tiras na massa leve e frite em óleo bem quente.",
+    "prepTime": 30,
+    "cost": 22.0,
+    "difficulty": "Média",
+    "rating": 4.6,
+    "integrityHash": "09f14036bf074a9a71e5352e33ad58c2bde675b33395488e30ab5f82845e897e"
+  }
+]

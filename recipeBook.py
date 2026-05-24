@@ -1,8 +1,8 @@
 import json
 from recipe import Recipe
-from recipeTrie import RecipeTrie
-from recipeHash import HashTable
-from BTree import BTree
+from dataStructures.trie import RecipeTrie
+from dataStructures.hashTable import HashTable
+from dataStructures.bTree import BTree
 
 
 class RecipeBook:
@@ -82,35 +82,25 @@ class RecipeBook:
         print("All integrity hashes have been updated.")
 
     def _insertRecipesByIngredients(self, ingredients, recipe):
-
         for ingredient in ingredients:
-
             entry = self.recipesByIngredients.search(ingredient)
-
             if entry is None:
                 entry = []
                 self.recipesByIngredients.insert(ingredient, entry)
-
             entry.append(recipe)
 
     def _insertRecipesByCategory(self, category, recipe):
-
         entry = self.recipesByCategory.search(category)
-
         if entry is None:
             entry = []
             self.recipesByCategory.insert(category, entry)
-
         entry.append(recipe)
-
-            
 
     def _insertIntoBTreeIndex(self, tree: BTree, key, recipe: Recipe):
         current = tree.search(key)
         if current is None:
             tree.insert(key, [recipe])
             return
-
         current.append(recipe)
 
     def suggestIdealRecipes(self, maxCost, maxPrepTime, difficultyLevel):
@@ -165,17 +155,11 @@ class RecipeBook:
 
     def _mapDifficultyToLevel(self, difficulty):
         text = str(difficulty).lower()
-        if text == "fácil":
+        if text == "fácil" or text == "easy":
             return 0
-        if text == "média":
+        if text == "média" or text == "medium":
             return 1
-        if text == "difícil":
-            return 2
-        if text == "easy":
-            return 0
-        if text == "medium":
-            return 1
-        if text == "hard":
+        if text == "difícil" or text == "hard":
             return 2
         return None
 
