@@ -1,24 +1,33 @@
 from recipeBook import RecipeBook
-# Menu option 1
-def searchRecipeByID(book: RecipeBook):
+
+
+def showMenu():
+    print("\n=== Desafio na Cozinha ===")
+    print("1. Search Recipe by ID")
+    print("2. Run Integrity Check (Investigation)")
+    print("3. Update All Hashes (Authorize Changes)")
+    print("4. Show HashTable Stats")
+    print("5. Search Recipe by Name")
+    print("0. Exit")
+    return input("Choose an option: ")
+
+
+def searchRecipeByID(book):
     try:
         searchId = int(input("Enter Recipe ID: "))
         recipe = book.getRecipeById(searchId)
         if recipe:
-            print(f"\n--- Recipe Details ---")
+            print("\n--- Recipe Details ---")
             print(f"Name: {recipe.name}")
             print(f"Category: {recipe.category}")
-            print(
-                f"Status: {'OK' if not recipe.isCorrupted() else 'CORRUPTED'}"
-            )
+            print(f"Status: {'OK' if not recipe.isCorrupted() else 'CORRUPTED'}")
         else:
             print("Recipe not found.")
     except ValueError:
         print("Invalid ID.")
 
 
-# Menu option 2
-def runIntegrityCheck(book: RecipeBook):
+def runIntegrityCheck(book):
     print("\n--- Running Investigation ---")
     allRecipes = book.listAllRecipes()
     corrupted = [recipe for recipe in allRecipes if recipe.isCorrupted()]
@@ -29,36 +38,31 @@ def runIntegrityCheck(book: RecipeBook):
             print(f"[!] CORRUPTED: {recipe.name} (ID: {recipe.id})")
 
 
-# Menu option 3
-def updateAllHashes(book: RecipeBook, jsonPath: str):
+def updateAllHashes(book, jsonPath):
     confirm = input("This will update all integrity hashes. Proceed? (y/n): ")
     if confirm.lower() == "y":
         book.updateAllHashes(jsonPath)
 
 
-# Menu option 4
-def showHashTableStats(book: RecipeBook):
+def showHashTableStats(book):
     hashTable = book.recipesById
-    print(f"\n--- HashTable Statistics ---")
+    print("\n--- HashTable Statistics ---")
     print(f"Current Size: {hashTable.size}")
     print(f"Total Elements: {hashTable.count}")
     print(f"Load Factor: {hashTable.getLoadFactor():.2f}")
     print(f"Number of Rehashes: {hashTable.rehashCount}")
 
 
-# Menu option 5
-def searchRecipeByName(book: RecipeBook):
-
+def searchRecipeByName(book):
     search = input("I'm looking for...: ")
-    found, result = book.recipeTrie.searchRecipe(search, prefixSearch=True, suggestionDepthLimit=10, suggestionCount=5)
+    found, result = book.searchByName(search)
 
     if found:
         print("Found!!")
         print(f"ID: {result.id} - {result.name}")
-
         return
 
-    print("Couldn't find your search...")
+    print("Couldn't find an exact match...")
     if not result:
         return
 
@@ -66,3 +70,24 @@ def searchRecipeByName(book: RecipeBook):
     for recipe in result:
         print(f"{recipe.id} - {recipe.name}")
 
+
+def runMenu(book, jsonPath):
+    while True:
+        choice = showMenu()
+
+        match choice:
+            case "1":
+                searchRecipeByID(book)
+            case "2":
+                runIntegrityCheck(book)
+            case "3":
+                updateAllHashes(book, jsonPath)
+            case "4":
+                showHashTableStats(book)
+            case "5":
+                searchRecipeByName(book)
+            case "0":
+                print("Exiting...")
+                break
+            case _:
+                print("Invalid option.")

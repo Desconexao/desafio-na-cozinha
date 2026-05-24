@@ -1,6 +1,6 @@
 import json
 from recipe import Recipe
-from RecipeTrie import RecipeTrie
+from recipeTrie import RecipeTrie
 
 
 class HashTable:
@@ -56,7 +56,6 @@ class HashTable:
                 allValues.append(storedRecipe)
         return allValues
 
-
     def getLoadFactor(self):
         return self.count / self.size
 
@@ -89,7 +88,7 @@ class RecipeBook:
                     self.recipesById.insert(recipe.id, recipe)
                     self.recipeTrie.addRecipe(recipe)
                     self.recipesByCategory.insert(recipe.category, recipe)
-                    
+
             print(f"Success: {len(self.recipesById.getAll())} recipes loaded.")
         except Exception as e:
             print(f"Load error: {e}")
@@ -105,6 +104,11 @@ class RecipeBook:
 
     def getRecipeById(self, recipeId):
         return self.recipesById.search(recipeId)
+
+    def searchByName(self, name):
+        return self.recipeTrie.searchRecipe(
+            name, prefixSearch=True, suggestionDepthLimit=50, suggestionCount=5
+        )
 
     def listAllRecipes(self):
         return self.recipesById.getAll()

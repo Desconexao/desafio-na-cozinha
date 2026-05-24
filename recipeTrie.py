@@ -1,5 +1,5 @@
-import recipe
-from time import sleep
+from recipe import Recipe
+
 
 class RecipeTrie:
     def __init__(self, stringAdaptation: bool = True):
@@ -10,9 +10,9 @@ class RecipeTrie:
         # accented letters: "maçã" -> "maça"
         self.adapt = stringAdaptation
 
-    def addRecipe(self, recipe: recipe):
+    def addRecipe(self, recipe: Recipe):
         string = (recipe.name).upper()
-        
+
         if self.adapt:
             string = self._adaptString(string)
 
@@ -27,15 +27,21 @@ class RecipeTrie:
         currentNode._setFinal(True)
         currentNode._setRecipe(recipe)
 
-    def searchRecipe(self, string: str, prefixSearch: bool = True, suggestionDepthLimit: int = 10, suggestionCount: int = 5) -> tuple[bool, object]:
+    def searchRecipe(
+        self,
+        string: str,
+        prefixSearch: bool = True,
+        suggestionDepthLimit: int = 50,
+        suggestionCount: int = 5,
+    ) -> tuple[bool, object]:
         """
-            returns [bool, object]
+        returns [bool, object]
 
-            if the returned boolean is:
-                True: The whole String was found, the object returned alongside is the recipe itself.
-                False: If prefix search is:
-                    True: the reurned object is a limited tuple of recipes with the same prefix
-                    False: returns None
+        if the returned boolean is:
+            True: The whole String was found, the object returned alongside is the recipe itself.
+            False: If prefix search is:
+                True: the reurned object is a limited tuple of recipes with the same prefix
+                False: returns None
         """
 
         if self.adapt:
@@ -45,30 +51,27 @@ class RecipeTrie:
 
         currentNode = self.root
         for char in string:
-            sleep(0.5)
-            print(f"[DEBUG] Char: {char}")
             if char not in currentNode.children:
-                #print("No children for this char")
-                #print(f"Children: {currentNode._getChildrenKeys()}")
+                # print("No children for this char")
+                # print(f"Children: {currentNode._getChildrenKeys()}")
                 break
 
             currentNode = currentNode.children[char]
 
         if currentNode._isFinal():
             return True, currentNode._getRecipe()
-        
+
         if not prefixSearch:
             return False, None
-        
-        suggestions = self._findAutocomplete(currentNode, suggestionDepthLimit, suggestionCount)
+
+        suggestions = self._findAutocomplete(
+            currentNode, suggestionDepthLimit, suggestionCount
+        )
 
         return False, tuple(suggestions)
 
     def _findAutocomplete(
-        self,
-        startNode: "_StringTrieNode",
-        depth: int,
-        size: int
+        self, startNode: "_StringTrieNode", depth: int, size: int
     ) -> tuple:
 
         suggestions = []
@@ -91,22 +94,23 @@ class RecipeTrie:
 
         return tuple(suggestions[:size])
 
-
     def _adaptString(self, string: str) -> str:
 
-        TRANSLATION = str.maketrans({
-            "Á": "A",
-            "À": "A",
-            "Ã": "A",
-            "Â": "A",
-            "É": "E",
-            "Ê": "E",
-            "Í": "I",
-            "Ó": "O",
-            "Ô": "O",
-            "Õ": "O",
-            "Ú": "U",
-        })
+        TRANSLATION = str.maketrans(
+            {
+                "Á": "A",
+                "À": "A",
+                "Ã": "A",
+                "Â": "A",
+                "É": "E",
+                "Ê": "E",
+                "Í": "I",
+                "Ó": "O",
+                "Ô": "O",
+                "Õ": "O",
+                "Ú": "U",
+            }
+        )
 
         # removes whitespaces
         string = string.replace(" ", "")
@@ -117,21 +121,19 @@ class RecipeTrie:
         return string
 
 
-
-
 class _StringTrieNode:
     def __init__(self, char: str, isFinal: bool):
         self.char = char
         self.children: dict[str, "_StringTrieNode"] = {}
         self.isFinal = isFinal
-        self.recipe = None
+        self.recipe: Recipe | None = None
 
     def _getChar(self) -> str:
         return self.char
-    
+
     def _isFinal(self) -> bool:
         return self.isFinal
-    
+
     def _setFinal(self, isFinal: bool):
         self.isFinal = isFinal
 
@@ -140,11 +142,11 @@ class _StringTrieNode:
 
         self.children[self.char] = node
 
-    def _setRecipe(self, recipe: recipe):
+    def _setRecipe(self, recipe: Recipe):
         self.recipe = recipe
 
-    def _getRecipe(self) -> recipe:
+    def _getRecipe(self) -> Recipe | None:
         return self.recipe
-    
+
     def _getChildrenKeys(self):
         return self.children.keys()
