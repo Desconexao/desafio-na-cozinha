@@ -109,7 +109,7 @@ class RecipeTrie:
         })
 
         # removes whitespaces
-        string.replace(" ", "")
+        string = string.replace(" ", "")
 
         # remove accented chars
         string = string.translate(TRANSLATION)
