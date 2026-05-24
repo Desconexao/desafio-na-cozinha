@@ -1,5 +1,5 @@
 from recipeBook import RecipeBook
-from menuhandler import runMenu
+from menuHandler import runMenu
 
 
 def main():
