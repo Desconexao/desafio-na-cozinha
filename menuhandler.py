@@ -3,7 +3,7 @@ from recipeBook import RecipeBook
 def searchRecipeByName(book: RecipeBook):
 
     search = input("I'm looking for...: ")
-    found, result = book.recipeTrie.searchRecipe(search, prefixSearch=True)
+    found, result = book.recipeTrie.searchRecipe(search, prefixSearch=True, suggestionDepthLimit=10, suggestionCount=5)
 
     if found:
         print("Found!!")

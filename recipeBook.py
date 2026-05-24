@@ -64,6 +64,8 @@ class HashTable:
 class RecipeBook:
     def __init__(self):
         self.recipesById = HashTable(initialSize=5)
+        self.recipesByIngredients = HashTable(initialSize=5)
+        self.recipesByCategory = HashTable(initialSize=5)
         self.recipeTrie = RecipeTrie(stringAdaptation=True)
 
     def loadRecipes(self, filePath):
@@ -86,6 +88,8 @@ class RecipeBook:
                     )
                     self.recipesById.insert(recipe.id, recipe)
                     self.recipeTrie.addRecipe(recipe)
+                    self.recipesByCategory.insert(recipe.category, recipe)
+                    
             print(f"Success: {len(self.recipesById.getAll())} recipes loaded.")
         except Exception as e:
             print(f"Load error: {e}")
@@ -112,3 +116,7 @@ class RecipeBook:
             recipe.integrityHash = recipe.calculateCurrentHash()
         self.saveRecipes(filePath)
         print("All integrity hashes have been updated.")
+
+    def _insertRecipesByIngredients(self, ingredients: list, recipe: Recipe):
+        for ingredient in ingredients:
+            self.recipesByIngredients.insert(ingredient, recipe)
