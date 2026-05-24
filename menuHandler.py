@@ -1,18 +1,38 @@
 from recipeBook import RecipeBook
 
+book: RecipeBook
+jsonPath: str
 
 def showMenu():
     print("\n=== Desafio na Cozinha ===")
-    print("1. Search Recipe by ID")
-    print("2. Run Integrity Check (Investigation)")
-    print("3. Update All Hashes (Authorize Changes)")
-    print("4. Show HashTable Stats")
-    print("5. Search Recipe by Name")
+    print("1. Investigation Mode")
+    print("2. Chef Mode")
+    print("3. Quick Search Mode")
     print("0. Exit")
     return input("Choose an option: ")
 
+def showInvestigationModeMenu():
+    print("\n=== Modo Investigação ===")
+    print("1. Run Integrity Check (Investigation)")
+    print("2. Update All Hashes (Authorize Changes)")
+    print("3. Show HashTable Stats")
+    print("0. Back")
+    return input("Choose an option: ")
 
-def searchRecipeByID(book):
+def showChefModeMenu():
+    print("\n=== Modo Chef ===")
+    print("0. Back")
+    return input("Choose an option: ")
+
+def showQuickSearchModeMenu():
+    print("\n=== Modo Busca Rápida ===")
+    print("1. Search Recipe by ID")
+    print("2. Search Recipe by Name")
+    print("0. Back")
+    return input("Choose an option: ")
+
+
+def searchRecipeByID():
     try:
         searchId = int(input("Enter Recipe ID: "))
         recipe = book.getRecipeById(searchId)
@@ -27,7 +47,7 @@ def searchRecipeByID(book):
         print("Invalid ID.")
 
 
-def runIntegrityCheck(book):
+def runIntegrityCheck():
     print("\n--- Running Investigation ---")
     allRecipes = book.listAllRecipes()
     corrupted = [recipe for recipe in allRecipes if recipe.isCorrupted()]
@@ -38,13 +58,13 @@ def runIntegrityCheck(book):
             print(f"[!] CORRUPTED: {recipe.name} (ID: {recipe.id})")
 
 
-def updateAllHashes(book, jsonPath):
+def updateAllHashes():
     confirm = input("This will update all integrity hashes. Proceed? (y/n): ")
     if confirm.lower() == "y":
         book.updateAllHashes(jsonPath)
 
 
-def showHashTableStats(book):
+def showHashTableStats():
     hashTable = book.recipesById
     print("\n--- HashTable Statistics ---")
     print(f"Current Size: {hashTable.size}")
@@ -53,7 +73,7 @@ def showHashTableStats(book):
     print(f"Number of Rehashes: {hashTable.rehashCount}")
 
 
-def searchRecipeByName(book):
+def searchRecipeByName():
     search = input("I'm looking for...: ")
     found, result = book.searchByName(search)
 
@@ -71,23 +91,74 @@ def searchRecipeByName(book):
         print(f"{recipe.id} - {recipe.name}")
 
 
-def runMenu(book, jsonPath):
+def runMenu(bookParam, jsonPathParam):
+    global book
+    global jsonPath
+
+    book = bookParam
+    jsonPath = jsonPathParam
+
+    print("\033[H\033[J", end="")
     while True:
         choice = showMenu()
+        print("\033[H\033[J", end="")
 
         match choice:
             case "1":
-                searchRecipeByID(book)
+                investigationModeMenu()
             case "2":
-                runIntegrityCheck(book)
+                chefModeMenu()
             case "3":
-                updateAllHashes(book, jsonPath)
-            case "4":
-                showHashTableStats(book)
-            case "5":
-                searchRecipeByName(book)
+                quickSearchModeMenu()
             case "0":
                 print("Exiting...")
+                break
+            case _:
+                print("Invalid option.")
+
+
+def investigationModeMenu():
+    while True:
+        choice = showInvestigationModeMenu()
+        print("\033[H\033[J", end="")
+
+        match choice:
+            case "1":
+                runIntegrityCheck()
+            case "2":
+                updateAllHashes()
+            case "3":
+                showHashTableStats()
+            case "0":
+                print("Exiting mode...")
+                break
+            case _:
+                print("Invalid option.")
+
+def chefModeMenu():
+    while True:
+        choice = showChefModeMenu()
+        print("\033[H\033[J", end="")
+
+        match choice:
+            case "0":
+                print("Exiting mode...")
+                break
+            case _:
+                print("Invalid option.")
+
+def quickSearchModeMenu():
+    while True:
+        choice = showQuickSearchModeMenu()
+        print("\033[H\033[J", end="")
+
+        match choice:
+            case "1":
+                searchRecipeByID()
+            case "2":
+                searchRecipeByName()
+            case "0":
+                print("Exiting mode...")
                 break
             case _:
                 print("Invalid option.")
