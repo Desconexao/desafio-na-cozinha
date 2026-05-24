@@ -1,4 +1,5 @@
 from recipeBook import RecipeBook
+from menuhandler import *
 
 
 def showMenu():
@@ -7,6 +8,7 @@ def showMenu():
     print("2. Run Integrity Check (Investigation)")
     print("3. Update All Hashes (Authorize Changes)")
     print("4. Show HashTable Stats")
+    print("5. Search recipe name")
     print("0. Exit")
     return input("Choose an option: ")
 
@@ -72,6 +74,10 @@ def main():
             print(f"Total Elements: {hashTable.count}")
             print(f"Load Factor: {hashTable.getLoadFactor():.2f}")
             print(f"Number of Rehashes: {hashTable.rehashCount}")
+
+        elif choice == "5":
+            searchRecipeByName(book)
+            pass
 
         elif choice == "0":
             print("Exiting...")

@@ -1,5 +1,6 @@
 import json
 from recipe import Recipe
+from RecipeTrie import RecipeTrie
 
 
 class HashTable:
@@ -63,6 +64,7 @@ class HashTable:
 class RecipeBook:
     def __init__(self):
         self.recipesById = HashTable(initialSize=5)
+        self.recipeTrie = RecipeTrie(stringAdaptation=True)
 
     def loadRecipes(self, filePath):
         # Load recipes from JSON file
@@ -83,6 +85,7 @@ class RecipeBook:
                         integrityHash=recipeData.get("integrityHash"),
                     )
                     self.recipesById.insert(recipe.id, recipe)
+                    self.recipeTrie.addRecipe(recipe)
             print(f"Success: {len(self.recipesById.getAll())} recipes loaded.")
         except Exception as e:
             print(f"Load error: {e}")
