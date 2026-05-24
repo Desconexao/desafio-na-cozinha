@@ -50,6 +50,15 @@ class HashTable:
             for storedId, storedRecipe in bucket:
                 allValues.append(storedRecipe)
         return allValues
+    
+    def getKeys(self) -> list:
+        keys = []
+
+        for bucket in self.table:
+            for key, value in bucket:
+                keys.append(key)
+
+        return keys
 
     def getLoadFactor(self):
         return self.count / self.size

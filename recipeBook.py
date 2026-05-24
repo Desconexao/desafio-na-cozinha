@@ -2,6 +2,7 @@ import json
 from recipe import Recipe
 from recipeTrie import RecipeTrie
 from recipeHash import HashTable
+from BTree import BTree
 
 
 class RecipeBook:
@@ -10,6 +11,10 @@ class RecipeBook:
         self.recipesByIngredients = HashTable(initialSize=5)
         self.recipesByCategory = HashTable(initialSize=5)
         self.recipeTrie = RecipeTrie(stringAdaptation=True)
+        self.recipesByCost = BTree(minimumDegree=5)
+        self.recipesByRating = BTree(minimumDegree=5)
+        self.recipesByPrepTime = BTree(minimumDegree=5)
+        self.recipesByDifficulty = BTree(minimumDegree=5)
 
     def loadRecipes(self, filePath):
         # Load recipes from JSON file
@@ -31,7 +36,15 @@ class RecipeBook:
                     )
                     self.recipesById.insert(recipe.id, recipe)
                     self.recipeTrie.addRecipe(recipe)
-                    self.recipesByCategory.insert(recipe.category, recipe)
+                    self._insertRecipesByIngredients(recipe.ingredients, recipe)
+                    self._insertRecipesByCategory(recipe.category, recipe)
+                    self._insertIntoBTreeIndex(self.recipesByCost, recipe.cost, recipe)
+                    self._insertIntoBTreeIndex(
+                        self.recipesByRating, recipe.rating, recipe
+                    )
+                    self._insertIntoBTreeIndex(
+                        self.recipesByPrepTime, recipe.prepTime, recipe
+                    )
 
             print(f"Success: {len(self.recipesById.getAll())} recipes loaded.")
         except Exception as e:
@@ -65,6 +78,34 @@ class RecipeBook:
         self.saveRecipes(filePath)
         print("All integrity hashes have been updated.")
 
-    def _insertRecipesByIngredients(self, ingredients: list, recipe: Recipe):
+    def _insertRecipesByIngredients(self, ingredients, recipe):
+
         for ingredient in ingredients:
-            self.recipesByIngredients.insert(ingredient, recipe)
+
+            entry = self.recipesByIngredients.search(ingredient)
+
+            if entry is None:
+                entry = []
+                self.recipesByIngredients.insert(ingredient, entry)
+
+            entry.append(recipe)
+
+    def _insertRecipesByCategory(self, category, recipe):
+
+        entry = self.recipesByCategory.search(category)
+
+        if entry is None:
+            entry = []
+            self.recipesByCategory.insert(category, entry)
+
+        entry.append(recipe)
+
+            
+
+    def _insertIntoBTreeIndex(self, tree: BTree, key, recipe: Recipe):
+        current = tree.search(key)
+        if current is None:
+            tree.insert(key, [recipe])
+            return
+
+        current.append(recipe)

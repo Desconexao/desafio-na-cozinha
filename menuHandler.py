@@ -28,6 +28,8 @@ def showQuickSearchModeMenu():
     print("\n=== Modo Busca Rápida ===")
     print("1. Search Recipe by ID")
     print("2. Search Recipe by Name")
+    print("3. Search Recipe by Category")
+    print("4. Search Recipe by Ingredient")
     print("0. Back")
     return input("Choose an option: ")
 
@@ -90,6 +92,67 @@ def searchRecipeByName():
     for recipe in result:
         print(f"{recipe.id} - {recipe.name}")
 
+def searchRecipeByCategory():
+    categories = book.recipesByCategory.getKeys()
+    if not categories:
+        print("No categories found.")
+        return
+
+    print("Choose one of the following categories: ")
+    for i, category in enumerate(categories):
+        print(f"{i} - {category}")
+
+    try:
+        choice = int(input("Enter category number: "))
+    except ValueError:
+        print("Invalid option.")
+        return
+
+    if choice < 0 or choice >= len(categories):
+        print("Invalid option.")
+        return
+
+    selectedCategory = categories[choice]
+    recipes = book.recipesByCategory.search(selectedCategory)
+    if not recipes:
+        print("Category not found.")
+        return
+
+    print("\nFound recipes:")
+    for recipe in recipes:
+        print(f"ID: {recipe.id} - {recipe.name}")
+
+
+def searchRecipeByIngredient():
+    ingredients = book.recipesByIngredients.getKeys()
+    if not ingredients:
+        print("No ingredients found.")
+        return
+
+    print("Choose one of the following ingredients: ")
+    for i, ingredient in enumerate(ingredients):
+        print(f"{i} - {ingredient}")
+
+    try:
+        choice = int(input("Enter ingredient number: "))
+    except ValueError:
+        print("Invalid option.")
+        return
+
+    if choice < 0 or choice >= len(ingredients):
+        print("Invalid option.")
+        return
+
+    selectedIngredient = ingredients[choice]
+    recipes = book.recipesByIngredients.search(selectedIngredient)
+    if not recipes:
+        print("Ingredient not found.")
+        return
+
+    print("\nFound recipes:")
+    for recipe in recipes:
+        print(f"ID: {recipe.id} - {recipe.name}")
+
 
 def runMenu(bookParam, jsonPathParam):
     global book
@@ -98,10 +161,10 @@ def runMenu(bookParam, jsonPathParam):
     book = bookParam
     jsonPath = jsonPathParam
 
-    print("\033[H\033[J", end="")
+    #print("\033[H\033[J", end="")
     while True:
         choice = showMenu()
-        print("\033[H\033[J", end="")
+        #print("\033[H\033[J", end="")
 
         match choice:
             case "1":
@@ -120,7 +183,7 @@ def runMenu(bookParam, jsonPathParam):
 def investigationModeMenu():
     while True:
         choice = showInvestigationModeMenu()
-        print("\033[H\033[J", end="")
+        #print("\033[H\033[J", end="")
 
         match choice:
             case "1":
@@ -138,7 +201,7 @@ def investigationModeMenu():
 def chefModeMenu():
     while True:
         choice = showChefModeMenu()
-        print("\033[H\033[J", end="")
+        #print("\033[H\033[J", end="")
 
         match choice:
             case "0":
@@ -150,13 +213,17 @@ def chefModeMenu():
 def quickSearchModeMenu():
     while True:
         choice = showQuickSearchModeMenu()
-        print("\033[H\033[J", end="")
+        #print("\033[H\033[J", end="")
 
         match choice:
             case "1":
                 searchRecipeByID()
             case "2":
                 searchRecipeByName()
+            case "3":
+                searchRecipeByCategory()
+            case "4":
+                searchRecipeByIngredient()
             case "0":
                 print("Exiting mode...")
                 break
