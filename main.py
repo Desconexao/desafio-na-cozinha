@@ -14,6 +14,7 @@ def showMenu():
 
 
 def main():
+    print("\033[H\033[J", end="")
     book = RecipeBook()
     jsonPath = "recipes2.json"
     book.loadRecipes(jsonPath)
@@ -34,56 +35,26 @@ def main():
         pass
 
     while True:
+        
         choice = showMenu()
+        print("\033[H\033[J", end="")
 
-        if choice == "1":
-            try:
-                searchId = int(input("Enter Recipe ID: "))
-                recipe = book.getRecipeById(searchId)
-                if recipe:
-                    print(f"\n--- Recipe Details ---")
-                    print(f"Name: {recipe.name}")
-                    print(f"Category: {recipe.category}")
-                    print(
-                        f"Status: {'OK' if not recipe.isCorrupted() else 'CORRUPTED'}"
-                    )
-                else:
-                    print("Recipe not found.")
-            except ValueError:
-                print("Invalid ID.")
-
-        elif choice == "2":
-            print("\n--- Running Investigation ---")
-            allRecipes = book.listAllRecipes()
-            corrupted = [recipe for recipe in allRecipes if recipe.isCorrupted()]
-            if not corrupted:
-                print("Integrity Check Passed: All recipes match their hashes.")
-            else:
-                for recipe in corrupted:
-                    print(f"[!] CORRUPTED: {recipe.name} (ID: {recipe.id})")
-
-        elif choice == "3":
-            confirm = input("This will update all integrity hashes. Proceed? (y/n): ")
-            if confirm.lower() == "y":
-                book.updateAllHashes(jsonPath)
-
-        elif choice == "4":
-            hashTable = book.recipesById
-            print(f"\n--- HashTable Statistics ---")
-            print(f"Current Size: {hashTable.size}")
-            print(f"Total Elements: {hashTable.count}")
-            print(f"Load Factor: {hashTable.getLoadFactor():.2f}")
-            print(f"Number of Rehashes: {hashTable.rehashCount}")
-
-        elif choice == "5":
-            searchRecipeByName(book)
-            pass
-
-        elif choice == "0":
-            print("Exiting...")
-            break
-        else:
-            print("Invalid option.")
+        match choice:
+            case "1":
+                searchRecipeByID(book)
+            case "2":
+                runIntegrityCheck(book)
+            case "3":
+                updateAllHashes(book, jsonPath)
+            case "4":
+                showHashTableStats(book)
+            case "5":
+                searchRecipeByName(book)
+            case "0":
+                print("Exiting...")
+                break
+            case _:
+                print("Invalid option.")
 
 
 if __name__ == "__main__":
