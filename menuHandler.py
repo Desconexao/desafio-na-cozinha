@@ -73,12 +73,31 @@ def updateAllHashes():
 
 
 def showHashTableStats():
-    hashTable = book.recipesById
-    print("\n--- HashTable Statistics ---")
-    print(f"Current Size: {hashTable.size}")
-    print(f"Total Elements: {hashTable.count}")
-    print(f"Load Factor: {hashTable.getLoadFactor():.2f}")
-    print(f"Number of Rehashes: {hashTable.rehashCount}")
+    print("\n=== HashTable Statistics ===")
+
+    # 1.IDHashTable
+    tableId = book.recipesById
+    print("\n[ID Table]")
+    print(f"Size: {tableId.size} | Elements: {tableId.count}")
+    print(
+        f"Load Factor: {tableId.getLoadFactor():.2f} | Rehashes: {tableId.rehashCount}"
+    )
+
+    # 2.CategoryHashTable
+    tableCat = book.recipesByCategory
+    print("\n[Category Table]")
+    print(f"Size: {tableCat.size} | Elements: {tableCat.count}")
+    print(
+        f"Load Factor: {tableCat.getLoadFactor():.2f} | Rehashes: {tableCat.rehashCount}"
+    )
+
+    # 3.IngredientHashTable
+    tableIng = book.recipesByIngredients
+    print("\n[Ingredient Table]")
+    print(f"Size: {tableIng.size} | Elements: {tableIng.count}")
+    print(
+        f"Load Factor: {tableIng.getLoadFactor():.2f} | Rehashes: {tableIng.rehashCount}"
+    )
 
 
 def searchRecipeByName():
