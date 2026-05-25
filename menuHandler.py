@@ -1,7 +1,6 @@
 from recipeBook import RecipeBook
-
-book: RecipeBook
-jsonPath: str
+from typing import cast
+from recipe import Recipe
 
 
 def showMenu():
@@ -40,7 +39,7 @@ def showQuickSearchModeMenu():
     return input("Choose an option: ")
 
 
-def searchRecipeByID():
+def searchRecipeByID(book: RecipeBook):
     try:
         searchId = int(input("Enter Recipe ID: "))
         recipe = book.getRecipeById(searchId)
@@ -55,7 +54,7 @@ def searchRecipeByID():
         print("Invalid ID.")
 
 
-def runIntegrityCheck():
+def runIntegrityCheck(book: RecipeBook):
     print("\n--- Running Investigation ---")
     allRecipes = book.listAllRecipes()
     corrupted = [recipe for recipe in allRecipes if recipe.isCorrupted()]
@@ -66,13 +65,13 @@ def runIntegrityCheck():
             print(f"[!] CORRUPTED: {recipe.name} (ID: {recipe.id})")
 
 
-def updateAllHashes():
+def updateAllHashes(book: RecipeBook, jsonPath: str):
     confirm = input("This will update all integrity hashes. Proceed? (y/n): ")
     if confirm.lower() == "y":
         book.updateAllHashes(jsonPath)
 
 
-def showHashTableStats():
+def showHashTableStats(book: RecipeBook):
     print("\n=== HashTable Statistics ===")
 
     # 1.IDHashTable
@@ -100,13 +99,14 @@ def showHashTableStats():
     )
 
 
-def searchRecipeByName():
+def searchRecipeByName(book: RecipeBook):
     search = input("I'm looking for...: ")
     found, result = book.searchByName(search)
 
     if found:
         print("Found!!")
-        print(f"ID: {result.id} - {result.name}")
+        exactMatch = cast(Recipe, result)
+        print(f"ID: {exactMatch.id} - {exactMatch.name}")
         return
 
     print("Couldn't find an exact match...")
@@ -114,11 +114,12 @@ def searchRecipeByName():
         return
 
     print("Did you mean?")
-    for recipe in result:
+    suggestions = cast(tuple[Recipe, ...], result)
+    for recipe in suggestions:
         print(f"{recipe.id} - {recipe.name}")
 
 
-def searchRecipeByCategory():
+def searchRecipeByCategory(book: RecipeBook):
     categories = book.recipesByCategory.getKeys()
     if not categories:
         print("No categories found.")
@@ -149,7 +150,7 @@ def searchRecipeByCategory():
         print(f"ID: {recipe.id} - {recipe.name}")
 
 
-def searchRecipeByIngredient():
+def searchRecipeByIngredient(book: RecipeBook):
     ingredients = book.recipesByIngredients.getKeys()
     if not ingredients:
         print("No ingredients found.")
@@ -180,7 +181,7 @@ def searchRecipeByIngredient():
         print(f"ID: {recipe.id} - {recipe.name}")
 
 
-def getMyIdealDish():
+def getMyIdealDish(book: RecipeBook):
     try:
         maxCost = float(input("Enter max price: "))
         maxPrepTime = int(input("Enter max prep time: "))
@@ -202,7 +203,7 @@ def getMyIdealDish():
         )
 
 
-def generateRecipeCombination():
+def generateRecipeCombination(book: RecipeBook):
     print("\nChoose objective:")
     print("1. Economic Menu")
     print("2. Fast Menu")
@@ -243,23 +244,17 @@ def generateRecipeCombination():
     print(f"Total PrepTime: {totalPrepTime}")
 
 
-def runMenu(bookParam, jsonPathParam):
-    global book
-    global jsonPath
-
-    book = bookParam
-    jsonPath = jsonPathParam
-
+def runMenu(book: RecipeBook, jsonPath: str):
     while True:
         choice = showMenu()
 
         match choice:
             case "1":
-                investigationModeMenu()
+                investigationModeMenu(book, jsonPath)
             case "2":
-                chefModeMenu()
+                chefModeMenu(book)
             case "3":
-                quickSearchModeMenu()
+                quickSearchModeMenu(book)
             case "0":
                 print("Exiting...")
                 break
@@ -267,17 +262,17 @@ def runMenu(bookParam, jsonPathParam):
                 print("Invalid option.")
 
 
-def investigationModeMenu():
+def investigationModeMenu(book: RecipeBook, jsonPath: str):
     while True:
         choice = showInvestigationModeMenu()
 
         match choice:
             case "1":
-                runIntegrityCheck()
+                runIntegrityCheck(book)
             case "2":
-                updateAllHashes()
+                updateAllHashes(book, jsonPath)
             case "3":
-                showHashTableStats()
+                showHashTableStats(book)
             case "0":
                 print("Exiting mode...")
                 break
@@ -285,15 +280,15 @@ def investigationModeMenu():
                 print("Invalid option.")
 
 
-def chefModeMenu():
+def chefModeMenu(book: RecipeBook):
     while True:
         choice = showChefModeMenu()
 
         match choice:
             case "1":
-                getMyIdealDish()
+                getMyIdealDish(book)
             case "2":
-                generateRecipeCombination()
+                generateRecipeCombination(book)
             case "0":
                 print("Exiting mode...")
                 break
@@ -301,19 +296,19 @@ def chefModeMenu():
                 print("Invalid option.")
 
 
-def quickSearchModeMenu():
+def quickSearchModeMenu(book: RecipeBook):
     while True:
         choice = showQuickSearchModeMenu()
 
         match choice:
             case "1":
-                searchRecipeByID()
+                searchRecipeByID(book)
             case "2":
-                searchRecipeByName()
+                searchRecipeByName(book)
             case "3":
-                searchRecipeByCategory()
+                searchRecipeByCategory(book)
             case "4":
-                searchRecipeByIngredient()
+                searchRecipeByIngredient(book)
             case "0":
                 print("Exiting mode...")
                 break
