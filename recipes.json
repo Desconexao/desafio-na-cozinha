@@ -134,14 +134,7 @@
     "id": 8,
     "name": "Sopa de Lentilha",
     "category": "Sopa",
-    "ingredients": [
-      "Lentilha",
-      "Cenoura",
-      "Batata",
-      "Bacon",
-      "Cebola",
-      "Alho"
-    ],
+    "ingredients": ["Lentilha", "Cenoura", "Batata", "Bacon", "Cebola", "Alho"],
     "instructions": "Cozinhe a lentilha com os legumes e bacon refogado até amaciar.",
     "prepTime": 40,
     "cost": 18.0,
@@ -500,13 +493,7 @@
     "id": 28,
     "name": "Bruschetta de Tomate",
     "category": "Entrada",
-    "ingredients": [
-      "Pão italiano",
-      "Tomate",
-      "Manjericão",
-      "Azeite",
-      "Alho"
-    ],
+    "ingredients": ["Pão italiano", "Tomate", "Manjericão", "Azeite", "Alho"],
     "instructions": "Esfregue alho no pão tostado e cubra com tomates temperados.",
     "prepTime": 15,
     "cost": 18.0,
@@ -662,13 +649,7 @@
     "id": 37,
     "name": "Frango Assado com Batatas",
     "category": "Acompanhamento",
-    "ingredients": [
-      "Frango inteiro",
-      "Batatas",
-      "Alecrim",
-      "Alho",
-      "Azeite"
-    ],
+    "ingredients": ["Frango inteiro", "Batatas", "Alecrim", "Alho", "Azeite"],
     "instructions": "Tempere o frango e as batatas e asse até ficar dourado e suculento.",
     "prepTime": 90,
     "cost": 35.0,
@@ -806,12 +787,7 @@
     "id": 45,
     "name": "Hambúrguer de Grão de Bico",
     "category": "Vegetariana",
-    "ingredients": [
-      "Grão de bico",
-      "Aveia",
-      "Cebola",
-      "Temperos frescos"
-    ],
+    "ingredients": ["Grão de bico", "Aveia", "Cebola", "Temperos frescos"],
     "instructions": "Amasse o grão de bico, misture com aveia e temperos, modele e grelhe.",
     "prepTime": 30,
     "cost": 20.0,
@@ -910,3 +886,4 @@
     "integrityHash": "09f14036bf074a9a71e5352e33ad58c2bde675b33395488e30ab5f82845e897e"
   }
 ]
+
