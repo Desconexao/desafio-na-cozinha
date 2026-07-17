@@ -17,7 +17,8 @@
     "cost": 25.5,
     "difficulty": "Fácil",
     "rating": 4.8,
-    "integrityHash": "61882899d1dd16482b479e757312f8355bd80a004653bd79580eb5ede2294272"
+    "dependencies": [],
+    "integrityHash": "d15fee688ad66f87eea12b1b67dd17af5952d2678e81488c685983b4e9c2eba6"
   },
   {
     "id": 2,
@@ -35,7 +36,8 @@
     "cost": 45.0,
     "difficulty": "Média",
     "rating": 4.9,
-    "integrityHash": "8ec159ff623a32b7f59008d8b3f2ae9a49226296ef2db24640cc57dc25d1d961"
+    "dependencies": [15],
+    "integrityHash": "ffaeeb410b1a3ea1c991fc0f9a04d1235ae8a08d34bbfd6879567e8b95918115"
   },
   {
     "id": 3,
@@ -53,7 +55,8 @@
     "cost": 30.0,
     "difficulty": "Fácil",
     "rating": 4.5,
-    "integrityHash": "ed100abcdea9cca5b95212a8f5dafbc411ffb8b5d55bc1f90fd7b55aa84fef97"
+    "dependencies": [],
+    "integrityHash": "a84be54f62323ffce88f644102619ecd972d1a92130843b5047af7b7c275018d"
   },
   {
     "id": 4,
@@ -72,7 +75,8 @@
     "cost": 65.0,
     "difficulty": "Difícil",
     "rating": 5.0,
-    "integrityHash": "481ccf232a388527407b64b162956139e489adc085ed104a954b6844bf27770c"
+    "dependencies": [],
+    "integrityHash": "fae8431127c944acb4747dae8157202686fd0bc5350eec760568d3898c933754"
   },
   {
     "id": 5,
@@ -91,7 +95,8 @@
     "cost": 35.0,
     "difficulty": "Fácil",
     "rating": 4.7,
-    "integrityHash": "e643b6981400557ff21e0dc1fb9be411abb44ebddddec21da864be818c28612a"
+    "dependencies": [],
+    "integrityHash": "a1adf4bac38691cd260dd703d449e651b7156cc923ffd36167882a696424fe11"
   },
   {
     "id": 6,
@@ -110,7 +115,8 @@
     "cost": 50.0,
     "difficulty": "Média",
     "rating": 4.6,
-    "integrityHash": "f45b7dd50293a480664bc95a8f9e39b63f5281a5a2d5da2642fa2a824a009808"
+    "dependencies": [],
+    "integrityHash": "87232f72856c1c14474cc01ec613b952fe1a15929c94491d98d7a99893ee03fa"
   },
   {
     "id": 7,
@@ -128,7 +134,8 @@
     "cost": 28.0,
     "difficulty": "Fácil",
     "rating": 4.8,
-    "integrityHash": "3310efd33c7b7df37c39ed8ff5e58240b28a2ef626cf48c111780f59f821e0c8"
+    "dependencies": [],
+    "integrityHash": "c283ecddd0aa21d75e53791ead56c38acc80da58a614e7e88dfe011aba7f5001"
   },
   {
     "id": 8,
@@ -140,7 +147,8 @@
     "cost": 18.0,
     "difficulty": "Fácil",
     "rating": 4.3,
-    "integrityHash": "b0e42911934d8531662fabb3008f44ec88612fdb5e3288c537ee67018d6ca4df"
+    "dependencies": [],
+    "integrityHash": "58316d89d3613553caab0f0ce9599bfd331b03043ca6c4aad51418de0f17871e"
   },
   {
     "id": 9,
@@ -159,7 +167,8 @@
     "cost": 75.0,
     "difficulty": "Média",
     "rating": 4.9,
-    "integrityHash": "82e6ff946e6b9863cac658654a53c4fcbbb9d9f5c2cf2220d8a73ca12fd4fb8b"
+    "dependencies": [],
+    "integrityHash": "5e4760244e5564d916dac56bcfd11a5c4cc4ce29e5fc2ce81160960b92aa591f"
   },
   {
     "id": 10,
@@ -177,7 +186,8 @@
     "cost": 32.0,
     "difficulty": "Média",
     "rating": 4.7,
-    "integrityHash": "a9d4bede4d6478401566a733f771fb0faae80b6871bf03b20a050ad740a35218"
+    "dependencies": [],
+    "integrityHash": "fc95e3a88d06e95fa3568997872578a83e28679c6f950aacd45343cb1d821b82"
   },
   {
     "id": 11,
@@ -195,7 +205,8 @@
     "cost": 40.0,
     "difficulty": "Média",
     "rating": 4.6,
-    "integrityHash": "4ec3ed193604ebbb7b27009ae51df12dac153b7f1d435884218a933554998530"
+    "dependencies": [],
+    "integrityHash": "9a7eb0f2018619ce4f9cf6d6855235060fa5304a88940997a869de055c731aa8"
   },
   {
     "id": 12,
@@ -214,7 +225,8 @@
     "cost": 22.0,
     "difficulty": "Fácil",
     "rating": 4.5,
-    "integrityHash": "06eea9123810dfffa264b20ebe18f0bcba88cc669adbc7fcf81018ecb6090b14"
+    "dependencies": [],
+    "integrityHash": "95be5a6048c82da3488c2d0f81da4af3b5b2a5f06e52ec35670171a14a083ee3"
   },
   {
     "id": 13,
@@ -232,7 +244,8 @@
     "cost": 85.0,
     "difficulty": "Difícil",
     "rating": 4.8,
-    "integrityHash": "5f0c948adf35129ccd4ac962f9c3f6259620a3a74af7062b7603741ffae7bd24"
+    "dependencies": [],
+    "integrityHash": "60992ba245500ad2732918144ca4cec07d4ded694af33d0a2e61393585ff439c"
   },
   {
     "id": 14,
@@ -251,7 +264,8 @@
     "cost": 12.0,
     "difficulty": "Fácil",
     "rating": 4.4,
-    "integrityHash": "ae6479a7c7e23efd9f1115a043f5a60250d0949697985be3e2a427a442273918"
+    "dependencies": [],
+    "integrityHash": "79a24146c7322b8eff94b2815fd07e8644af8d3aa336dd2bf1af790081efebb6"
   },
   {
     "id": 15,
@@ -269,7 +283,8 @@
     "cost": 95.0,
     "difficulty": "Média",
     "rating": 4.9,
-    "integrityHash": "2db54a6ef833e8d44a7d3f5cba4bfb8e7d81d4472a5de741d6e0ed925646ece6"
+    "dependencies": [10],
+    "integrityHash": "ace91dedede511db65f2a95a5187474f04b1b09664e0c3b657da253aae215856"
   },
   {
     "id": 16,
@@ -286,7 +301,8 @@
     "cost": 20.0,
     "difficulty": "Fácil",
     "rating": 5.0,
-    "integrityHash": "24fae6e3e644f379de4e665142f92d3165b054900b5594caec6ba25a84384f9a"
+    "dependencies": [],
+    "integrityHash": "7b717226422a048d3f2ea93e29fab35fa5bf10ceb29ada7b7add07c0699b44a6"
   },
   {
     "id": 17,
@@ -305,7 +321,8 @@
     "cost": 38.0,
     "difficulty": "Fácil",
     "rating": 4.7,
-    "integrityHash": "b22394331d83c929fb4c712aef22698c761e3f0eed4f934d6baaed8015157395"
+    "dependencies": [],
+    "integrityHash": "d58279de1b1ff41ba8058ad60fe3a9d40a5aea9c540d94ee9cc5790083a8785d"
   },
   {
     "id": 18,
@@ -324,7 +341,8 @@
     "cost": 35.0,
     "difficulty": "Média",
     "rating": 4.6,
-    "integrityHash": "eadb930c0590d8e152b538fd394ecc77c312f94d653c2fc9e388424e77f65b45"
+    "dependencies": [],
+    "integrityHash": "997dbf42bf11668b2d19b61b59c4681eb7edd63696ce124f9938ae8ef3b08579"
   },
   {
     "id": 19,
@@ -342,7 +360,8 @@
     "cost": 110.0,
     "difficulty": "Difícil",
     "rating": 4.9,
-    "integrityHash": "7b00e509c0b4d9cd194013418f4d66946c0d38d4aa67dcfd541add09089f89ee"
+    "dependencies": [],
+    "integrityHash": "8c0b07320f09d3f85a4173cf5f2ef5f491cefa3237b7187ee09cf17c5f60f763"
   },
   {
     "id": 20,
@@ -360,7 +379,8 @@
     "cost": 42.0,
     "difficulty": "Média",
     "rating": 4.6,
-    "integrityHash": "07a676c93be1bfce93d9b6ef903b35eeabed652dfd055d8147ed72c39e731b91"
+    "dependencies": [],
+    "integrityHash": "a6f657d6412ebd8e785f6cd5ea6e114b62f039ffc80e7762fefdd53b1e129606"
   },
   {
     "id": 21,
@@ -378,7 +398,8 @@
     "cost": 28.0,
     "difficulty": "Fácil",
     "rating": 4.7,
-    "integrityHash": "07adbbbdc2fcabb22eab2f0fb9a4dd938054915af542886c8eec05b3313a8790"
+    "dependencies": [],
+    "integrityHash": "ea7cd8e25d98332b00613ba6ea9a7b4085b14acbc33c0a53ac3c122b0426e5e6"
   },
   {
     "id": 22,
@@ -397,7 +418,8 @@
     "cost": 45.0,
     "difficulty": "Média",
     "rating": 4.8,
-    "integrityHash": "5446404f595dc04efe63f7d265264582d36d29516ff33e93e9cbd7783ceee7e2"
+    "dependencies": [],
+    "integrityHash": "48f6da3cbc48f508c9bbd8f7c6bf169583de322ea7178247a14fede62e9b1076"
   },
   {
     "id": 23,
@@ -414,7 +436,8 @@
     "cost": 22.0,
     "difficulty": "Fácil",
     "rating": 4.7,
-    "integrityHash": "2ea0ccf96108b4fe5f777811369ffc23380e9dc3d43ad1248dc9b1f088b3c958"
+    "dependencies": [],
+    "integrityHash": "2bc49f83f9fa41cda99ea0055f7312e453f2814f68f4a8e2fdc77b8a0306587d"
   },
   {
     "id": 24,
@@ -433,7 +456,8 @@
     "cost": 30.0,
     "difficulty": "Fácil",
     "rating": 4.6,
-    "integrityHash": "a959639a68e5964bd01281b7cfe5935705d7e60bb0380a20a43130e0cb751fb7"
+    "dependencies": [],
+    "integrityHash": "2474c106e5fa7af82b545d3463d5fa47ee9c28784b5ba76b7bedd3bb41968a41"
   },
   {
     "id": 25,
@@ -451,7 +475,8 @@
     "cost": 130.0,
     "difficulty": "Difícil",
     "rating": 4.9,
-    "integrityHash": "082b7e317e8f828c9757b7b7196de38f2e8e6d1abfd7692539a6bfe98535e857"
+    "dependencies": [],
+    "integrityHash": "239c8a8e3dcdf3fb1cebc5fb11031a8201b0bd842218abd66f195343737a5aab"
   },
   {
     "id": 26,
@@ -469,7 +494,8 @@
     "cost": 38.0,
     "difficulty": "Média",
     "rating": 4.7,
-    "integrityHash": "77b1457cc3c8b4b87c77683de39908509ab5752c4d09e2be5b0f9c9aa1caaa21"
+    "dependencies": [],
+    "integrityHash": "c7cc467e0d802101ee179f530fc2d0a15ee0b1e002d7c03033fb15694f7a2bb4"
   },
   {
     "id": 27,
@@ -487,7 +513,8 @@
     "cost": 45.0,
     "difficulty": "Fácil",
     "rating": 4.8,
-    "integrityHash": "120542c6eca469eb2e1dc60fb98b119066293bcdf00c4d5d662d8b658e8e120d"
+    "dependencies": [],
+    "integrityHash": "147e396269c065f262355efc055c0026b54e43921a33f9e389806e1791c70a0d"
   },
   {
     "id": 28,
@@ -499,7 +526,8 @@
     "cost": 18.0,
     "difficulty": "Fácil",
     "rating": 4.6,
-    "integrityHash": "91bce8ab7fedeab63171e5d72c01d0b5d9713925ee304ffc4b9116775d291caa"
+    "dependencies": [],
+    "integrityHash": "e33140c2bf92c38fde76ff43a293f953d9541a3a0f3b68189064e7640fbd9cf1"
   },
   {
     "id": 29,
@@ -517,7 +545,8 @@
     "cost": 25.0,
     "difficulty": "Média",
     "rating": 4.8,
-    "integrityHash": "d30f60d45dc53a800eb11a043f875c6d4898c0edc48479c7e9abf25f8d3b4476"
+    "dependencies": [],
+    "integrityHash": "d6a8d0aa9edf8b488af078d31584cb5014ea232bea5bd3fe0a70a44601fa864f"
   },
   {
     "id": 30,
@@ -535,7 +564,8 @@
     "cost": 35.0,
     "difficulty": "Fácil",
     "rating": 4.7,
-    "integrityHash": "1b00503e1f69ba88b23a64016afda106b364a65d8562cc4e12e2c59a753283b6"
+    "dependencies": [],
+    "integrityHash": "6a94a9dca3e3e694130b733b3b8fe5edea3d39820ebf09c6b1a6e42c17e5eccc"
   },
   {
     "id": 31,
@@ -554,7 +584,8 @@
     "cost": 22.0,
     "difficulty": "Média",
     "rating": 4.5,
-    "integrityHash": "e8f6e8ce4e6e73ffb7e75010eede7a6784b9ccfeb114063a68b30d6a3e27df25"
+    "dependencies": [],
+    "integrityHash": "76ed86f8381c03a5d24d7bf98002ea307816ee06bcd1298f5454efa39d09aa78"
   },
   {
     "id": 32,
@@ -572,7 +603,8 @@
     "cost": 24.0,
     "difficulty": "Fácil",
     "rating": 4.7,
-    "integrityHash": "4b7d80ec0f5192e6c94df332d7e6b103ef40aba58ce52db6fc50ffe6a68ea095"
+    "dependencies": [],
+    "integrityHash": "45cb1cc741cf5893db569c63d0720e820823a46e5a381be24cd0350c7ce497cb"
   },
   {
     "id": 33,
@@ -590,7 +622,8 @@
     "cost": 32.0,
     "difficulty": "Média",
     "rating": 4.8,
-    "integrityHash": "9b4e7c05458475849cbd5e1d2c0bcc6d1ded051cffc4e19dd5844bb668903623"
+    "dependencies": [],
+    "integrityHash": "d8d7fa3162ea3bc8741f3176bdb0dc2ad3fe3523cb854de24dfb31fe36e698e9"
   },
   {
     "id": 34,
@@ -608,7 +641,8 @@
     "cost": 48.0,
     "difficulty": "Média",
     "rating": 4.9,
-    "integrityHash": "1c1d2460c7ec0585e8c5b81cf9a602a6f2b1e800a61c8168835cbeee067b4962"
+    "dependencies": [],
+    "integrityHash": "2e91f20291d9738f809eb93f497ef5bd388ed96a8d4485bf9b01e83260db6768"
   },
   {
     "id": 35,
@@ -626,7 +660,8 @@
     "cost": 65.0,
     "difficulty": "Fácil",
     "rating": 4.8,
-    "integrityHash": "0ca0b8315434c9ff6b93b80e65759a336e6b7992e1b6d35a691a2592ec28b7ee"
+    "dependencies": [],
+    "integrityHash": "b013b954f7bbcf2451f9ab158d72567bd93e0785395329d763b680e59912444b"
   },
   {
     "id": 36,
@@ -643,7 +678,8 @@
     "cost": 45.0,
     "difficulty": "Média",
     "rating": 4.9,
-    "integrityHash": "c2e65551141da226b358362c9c6c72897c643bc7c4b76c8504c11121dd0656a1"
+    "dependencies": [],
+    "integrityHash": "fdd287363ab4542b5401f91ac480afac84d222061ab4e91963d19c29fd586028"
   },
   {
     "id": 37,
@@ -655,7 +691,8 @@
     "cost": 35.0,
     "difficulty": "Fácil",
     "rating": 4.6,
-    "integrityHash": "3ded6f245eb1643049c17ad7cc8478e0e02d9e5af435280658227dff0f2c68b5"
+    "dependencies": [],
+    "integrityHash": "7a4cb886cb53268a0554a1bc095b325f109f44dcf0fa38c18210615b32eb7597"
   },
   {
     "id": 38,
@@ -674,7 +711,8 @@
     "cost": 15.0,
     "difficulty": "Média",
     "rating": 5.0,
-    "integrityHash": "d6176ac0b74f8166baf045c492c45c3232b5055cbdb90babfe5cd28008f64bdf"
+    "dependencies": [],
+    "integrityHash": "0dcd686afdc6c6aab014520ad4a7727e434701bacf23faa373a6e27ba6e10594"
   },
   {
     "id": 39,
@@ -692,7 +730,8 @@
     "cost": 28.0,
     "difficulty": "Fácil",
     "rating": 4.5,
-    "integrityHash": "b905fea7655d96c2c6c47c820601b306703498fbdf3147de201d696fdd8b560f"
+    "dependencies": [],
+    "integrityHash": "8493e3b6c5ca712bd5e8d63c23676662b30d320d92d060e7a2835ed5c783a294"
   },
   {
     "id": 40,
@@ -710,7 +749,8 @@
     "cost": 85.0,
     "difficulty": "Difícil",
     "rating": 4.9,
-    "integrityHash": "1eab16814226bea4483667834012b8d5a9671c867565cc4c557b4e578583ac3e"
+    "dependencies": [],
+    "integrityHash": "af97fd97f8630e5aa8e9e7849499742bae31ff75fcd142728ca4a027c3ab9ed5"
   },
   {
     "id": 41,
@@ -727,7 +767,8 @@
     "cost": 38.0,
     "difficulty": "Fácil",
     "rating": 4.7,
-    "integrityHash": "b5429f9f66ed290c4d531638c1646282d7b4fdedcde6cacf1aa4055aa14f5fc8"
+    "dependencies": [],
+    "integrityHash": "b172491f8f27b9d66165e9518587b4d6b00c46e0aa9849ed442ce799a956e54f"
   },
   {
     "id": 42,
@@ -745,7 +786,8 @@
     "cost": 55.0,
     "difficulty": "Média",
     "rating": 4.9,
-    "integrityHash": "52ca01d536dedc6aba997dae38bf5c0599d1c6eb68b59833a70663e9ed906c41"
+    "dependencies": [],
+    "integrityHash": "064566528175c5943d0750996c2c539a51831320d0ca9a177250a03797c4b8af"
   },
   {
     "id": 43,
@@ -763,7 +805,8 @@
     "cost": 30.0,
     "difficulty": "Fácil",
     "rating": 4.4,
-    "integrityHash": "190b484325081ff9783971ba46392d202d2da40f047fcdff91849bcd57fc817e"
+    "dependencies": [],
+    "integrityHash": "0aa13df1559125f136afaa96466be67be845de6de0f8c21229836a381789c9d8"
   },
   {
     "id": 44,
@@ -781,7 +824,8 @@
     "cost": 35.0,
     "difficulty": "Média",
     "rating": 4.6,
-    "integrityHash": "b5daa24726e6d99404466ff6a8e09529dd6cd4113ef5cc3cfd323666f99200d1"
+    "dependencies": [],
+    "integrityHash": "c27e3dba80c812e3f7e10ed5ba418564d441b3a7ec7b9b6b48bf024ebf56feed"
   },
   {
     "id": 45,
@@ -793,7 +837,8 @@
     "cost": 20.0,
     "difficulty": "Fácil",
     "rating": 4.3,
-    "integrityHash": "9d9dbb4b695bc5ce4418a0a2010e3edaacc5766331475f1a1ca9b34a95a4e6b5"
+    "dependencies": [],
+    "integrityHash": "9282b676ae840bcb5d402b17c39454455ecedecdc763387044fe274a034a8952"
   },
   {
     "id": 46,
@@ -810,7 +855,8 @@
     "cost": 15.0,
     "difficulty": "Fácil",
     "rating": 5.0,
-    "integrityHash": "13aa67e1377b4fdd199826d035dd4ff22037a66688edba828ef3315faecf2cf9"
+    "dependencies": [],
+    "integrityHash": "e24eb45206dfcf865a00ba67f8703998a2be42cca52825ff94b01763453472f6"
   },
   {
     "id": 47,
@@ -829,7 +875,8 @@
     "cost": 18.0,
     "difficulty": "Fácil",
     "rating": 4.5,
-    "integrityHash": "174e9a99c02ac40ca90bc1f64714f425d70eb3866ff357e9e49f8c1ecb52f4a8"
+    "dependencies": [],
+    "integrityHash": "f0ab5c13187aa3686678ed67df8e334f529cd56828622484ac729a23b95783e6"
   },
   {
     "id": 48,
@@ -847,7 +894,8 @@
     "cost": 40.0,
     "difficulty": "Fácil",
     "rating": 4.7,
-    "integrityHash": "1a7bfdc454b7d38119b19303c6705e81fce8389021c19b4ff24b4fbc202cd4b0"
+    "dependencies": [],
+    "integrityHash": "09207ad52650c9a33c14d1c13e5eb741dbf9d8f25b28937424aa661bd7650fa1"
   },
   {
     "id": 49,
@@ -865,7 +913,8 @@
     "cost": 12.0,
     "difficulty": "Média",
     "rating": 4.8,
-    "integrityHash": "b05741aaed494813a5f8c263be25d0dbe4237b26449aaf5ebf89b6dbc00e5bcf"
+    "dependencies": [],
+    "integrityHash": "80697d5efb9be58b77c2f9df6437d4c5ae8968fb2dd3ffd2bfc321c8b12dcb42"
   },
   {
     "id": 50,
@@ -883,7 +932,7 @@
     "cost": 22.0,
     "difficulty": "Média",
     "rating": 4.6,
-    "integrityHash": "09f14036bf074a9a71e5352e33ad58c2bde675b33395488e30ab5f82845e897e"
+    "dependencies": [],
+    "integrityHash": "8a21654373c07e2b7df8888d93016f349572acc4507889e5ec1168875090337e"
   }
 ]
-

@@ -15,6 +15,7 @@ class Recipe:
         difficulty="Medium",
         integrityHash=None,
         rating=0.0,
+        dependencies=None,
     ):
         self.id = id
         self.name = name
@@ -25,6 +26,7 @@ class Recipe:
         self.cost = cost
         self.difficulty = difficulty
         self.rating = rating
+        self.dependencies = dependencies if dependencies is not None else []
 
         if integrityHash:
             self.integrityHash = integrityHash
@@ -32,7 +34,7 @@ class Recipe:
             self.integrityHash = self.calculateCurrentHash()
 
     def calculateCurrentHash(self):
-        # Generate SHA-256 hash  prevent any sabotage
+        # Generate SHA-256 hash to prevent sabotage
         content = {
             "id": self.id,
             "name": self.name,
@@ -43,6 +45,7 @@ class Recipe:
             "cost": self.cost,
             "difficulty": self.difficulty,
             "rating": self.rating,
+            "dependencies": sorted(self.dependencies),
         }
         contentStr = json.dumps(content, sort_keys=True).encode("utf-8")
         return hashlib.sha256(contentStr).hexdigest()
@@ -61,6 +64,7 @@ class Recipe:
             "cost": self.cost,
             "difficulty": self.difficulty,
             "rating": self.rating,
+            "dependencies": self.dependencies,
             "integrityHash": self.integrityHash,
         }
 

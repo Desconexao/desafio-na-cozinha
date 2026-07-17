@@ -5,6 +5,7 @@ from vip_menu import generate_vip_menu
 from dataStructures.graph import load_graph_from_json
 from logistics.logistics_algorithms import mst_kruskal, dijkstra, reconstruct_path
 from logistics.logistics_planner import load_kitchens, load_orders, load_regions, allocate_orders_greedy
+from production.productionManager import ProductionManager
 
 
 def showMenu():
@@ -13,6 +14,7 @@ def showMenu():
     print("2. Modo Chef")
     print("3. Modo Busca Rápida")
     print("4. O Pesadelo Logístico (Operação de Delivery)")
+    print("5. Oficina de Produção (Dependências)")
     print("0. Sair")
     return input("Escolha uma opção: ")
 
@@ -52,6 +54,68 @@ def showLogisticsModeMenu():
     print("3. Distribuir Pedidos entre Cozinhas (Alocação de Capacidade)")
     print("0. Voltar")
     return input("Escolha uma opção: ")
+
+
+def showProductionModeMenu():
+    print("\n=== Oficina de Produção - Dependências ===")
+    print("1. Verificar Inconsistências (Ciclos)")
+    print("2. Gerar Sequência Correta de Produção")
+    print("3. Ver Pré-requisitos de uma Receita")
+    print("0. Voltar")
+    return input("Escolha uma opção: ")
+
+
+def verifyDependencies(book: RecipeBook):
+    manager = ProductionManager(book)
+    result = manager.checkAndSort()
+    
+    if not result["viable"]:
+        print("\n[!] ERRO: Inconsistência detectada!")
+        cycle_names = []
+        for rid in result["cycle"]:
+            r = book.getRecipeById(rid)
+            cycle_names.append(r.name if r else f"ID {rid}")
+        print(f"Ciclo de dependência: {' -> '.join(cycle_names)}")
+    else:
+        print("\n[OK] Nenhuma inconsistência encontrada. Todas as dependências são válidas.")
+
+
+def showProductionSequence(book: RecipeBook):
+    manager = ProductionManager(book)
+    result = manager.checkAndSort()
+    
+    if not result["viable"]:
+        print("\n[!] Impossível gerar sequência: existem ciclos de dependência.")
+        return
+        
+    print("\n--- Sequência Correta de Produção ---")
+    for i, rid in enumerate(result["order"], 1):
+        r = book.getRecipeById(rid)
+        if r:
+            print(f"{i}. {r.name} (ID: {r.id})")
+
+
+def showPrerequisites(book: RecipeBook):
+    try:
+        targetId = int(input("Digite o ID da receita para ver pré-requisitos: "))
+        recipe = book.getRecipeById(targetId)
+        if not recipe:
+            print("Receita não encontrada.")
+            return
+            
+        manager = ProductionManager(book)
+        prereqs = manager.getPrerequisites(targetId)
+        
+        if not prereqs:
+            print(f"\nA receita '{recipe.name}' não possui pré-requisitos.")
+        else:
+            print(f"\n--- Pré-requisitos para {recipe.name} ---")
+            for rid in prereqs:
+                r = book.getRecipeById(rid)
+                if r:
+                    print(f"- {r.name} (ID: {r.id})")
+    except ValueError:
+        print("ID inválido.")
 
 
 def searchRecipeByID(book: RecipeBook):
@@ -272,6 +336,8 @@ def runMenu(book: RecipeBook, jsonPath: str):
                 quickSearchModeMenu(book)
             case "4":
                 logisticsModeMenu(book)
+            case "5":
+                productionModeMenu(book)
             case "0":
                 print("Saindo...")
                 break
@@ -295,6 +361,24 @@ def investigationModeMenu(book: RecipeBook, jsonPath: str):
                 break
             case _:
                 print("Invalid option.")
+
+
+def productionModeMenu(book: RecipeBook):
+    while True:
+        choice = showProductionModeMenu()
+
+        match choice:
+            case "1":
+                verifyDependencies(book)
+            case "2":
+                showProductionSequence(book)
+            case "3":
+                showPrerequisites(book)
+            case "0":
+                print("Voltando...")
+                break
+            case _:
+                print("Opção inválida.")
 
 
 def chefModeMenu(book: RecipeBook):

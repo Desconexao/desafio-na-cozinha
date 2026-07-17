@@ -32,6 +32,7 @@ class RecipeBook:
                         cost=recipeData.get("cost", 0.0),
                         difficulty=recipeData.get("difficulty", "Medium"),
                         rating=recipeData.get("rating", 0.0),
+                        dependencies=recipeData.get("dependencies", []),
                         integrityHash=recipeData.get("integrityHash"),
                     )
                     self.recipesById.insert(recipe.id, recipe)
