@@ -1,15 +1,20 @@
 from recipeBook import RecipeBook
 from typing import cast
 from recipe import Recipe
+from vip_menu import generate_vip_menu
+from dataStructures.graph import load_graph_from_json
+from logistics.logistics_algorithms import mst_kruskal, dijkstra, reconstruct_path
+from logistics.logistics_planner import load_kitchens, load_orders, load_regions, allocate_orders_greedy
 
 
 def showMenu():
     print("\n=== Desafio na Cozinha ===")
-    print("1. Investigation Mode")
-    print("2. Chef Mode")
-    print("3. Quick Search Mode")
-    print("0. Exit")
-    return input("Choose an option: ")
+    print("1. Modo Investigação")
+    print("2. Modo Chef")
+    print("3. Modo Busca Rápida")
+    print("4. O Pesadelo Logístico (Operação de Delivery)")
+    print("0. Sair")
+    return input("Escolha uma opção: ")
 
 
 def showInvestigationModeMenu():
@@ -25,6 +30,7 @@ def showChefModeMenu():
     print("\n=== Modo Chef ===")
     print("1. Get My Ideal Dish")
     print("2. Generate Recipe Combination")
+    print("3. Menu Degustação VIP (Otimização)")
     print("0. Back")
     return input("Choose an option: ")
 
@@ -37,6 +43,15 @@ def showQuickSearchModeMenu():
     print("4. Search Recipe by Ingredient")
     print("0. Back")
     return input("Choose an option: ")
+
+
+def showLogisticsModeMenu():
+    print("\n=== O Pesadelo Logístico - Operação de Delivery ===")
+    print("1. Planejar Rede de Hubs de Retirada (Árvore Geradora Mínima - Kruskal)")
+    print("2. Calcular Rota do Entregador (Caminho Mais Curto - Dijkstra)")
+    print("3. Distribuir Pedidos entre Cozinhas (Alocação de Capacidade)")
+    print("0. Voltar")
+    return input("Escolha uma opção: ")
 
 
 def searchRecipeByID(book: RecipeBook):
@@ -255,11 +270,13 @@ def runMenu(book: RecipeBook, jsonPath: str):
                 chefModeMenu(book)
             case "3":
                 quickSearchModeMenu(book)
+            case "4":
+                logisticsModeMenu(book)
             case "0":
-                print("Exiting...")
+                print("Saindo...")
                 break
             case _:
-                print("Invalid option.")
+                print("Opção inválida.")
 
 
 def investigationModeMenu(book: RecipeBook, jsonPath: str):
@@ -289,11 +306,59 @@ def chefModeMenu(book: RecipeBook):
                 getMyIdealDish(book)
             case "2":
                 generateRecipeCombination(book)
+            case "3":
+                generateVipMenu(book)
             case "0":
                 print("Exiting mode...")
                 break
             case _:
                 print("Invalid option.")
+
+
+def generateVipMenu(book: RecipeBook):
+    print("\nEscolha a restrição para otimização:")
+    print("1. Orçamento máximo (cost)")
+    print("2. Tempo total máximo (prepTime)")
+    choice = input("Escolha 1 ou 2: ")
+
+    if choice == "1":
+        try:
+            max_cost = float(input("Digite o orçamento máximo (ex: 500): "))
+        except ValueError:
+            print("Valor inválido.")
+            return
+        weight_attr = "cost"
+        capacity = max_cost
+    elif choice == "2":
+        try:
+            max_time = int(input("Digite o tempo total máximo em minutos (ex: 180): "))
+        except ValueError:
+            print("Valor inválido.")
+            return
+        weight_attr = "prepTime"
+        capacity = max_time
+    else:
+        print("Opção inválida.")
+        return
+
+    # candidates: use all recipes (no prefiltering); the chosen weight_attr enforces the single constraint
+    candidates = book.listAllRecipes()
+
+    selected, meta = generate_vip_menu(candidates, capacity, weight_attr=weight_attr)
+
+    if not selected:
+        print("Nenhuma combinação encontrada para a restrição informada.")
+        return
+
+    print("\n--- Menu Degustação VIP (Sugestão) ---")
+    for i, recipe in enumerate(selected, start=1):
+        print(
+            f"{i}. ID: {recipe.id} - {recipe.name} | Cost: {recipe.cost} | PrepTime: {recipe.prepTime} | Rating: {recipe.rating}"
+        )
+
+    print(f"Total Cost: {meta.get('total_cost')}")
+    print(f"Total PrepTime: {meta.get('total_prep_time')}")
+    print(f"Total Rating: {meta.get('total_rating')}")
 
 
 def quickSearchModeMenu(book: RecipeBook):
@@ -314,3 +379,106 @@ def quickSearchModeMenu(book: RecipeBook):
                 break
             case _:
                 print("Invalid option.")
+
+
+def buildMST():
+    print("\n--- Planejar Rede de Hubs de Retirada ---")
+    try:
+        graph = load_graph_from_json('logistics/regions.json', 'logistics/roads.json')
+        mst_edges, mst_weight = mst_kruskal(graph)
+        
+        print(f"\nArvore Geradora Minima Construida!")
+        print(f"  Regioes: {len(graph.nodes())}")
+        print(f"  Conexoes: {len(mst_edges)} (esperado: {len(graph.nodes()) - 1})")
+        print(f"  Custo Total: {mst_weight}")
+        print(f"\nPrimeiras 10 conexoes:")
+        for i, (u, v, w) in enumerate(mst_edges[:10], 1):
+            print(f"  {i}. {u:2} -- {v:2} (tempo: {w:5.1f} min)")
+    except Exception as e:
+        print(f"Erro ao construir MST: {e}")
+
+
+def calculateShortestPath():
+    print("\n--- Calcular Rota do Entregador ---")
+    try:
+        graph = load_graph_from_json('logistics/regions.json', 'logistics/roads.json')
+        
+        source = int(input("Regiao de saida (1-30): "))
+        target = int(input("Regiao de destino (1-30): "))
+        
+        if source not in graph.nodes() or target not in graph.nodes():
+            print("Regioes invalidas.")
+            return
+        
+        distances, parents = dijkstra(graph, source)
+        path = reconstruct_path(parents, source, target)
+        
+        if path:
+            print(f"\nRota encontrada: {' -> '.join(map(str, path))}")
+            print(f"Tempo total: {distances[target]:.1f} minutos")
+        else:
+            print(f"Sem rota entre regiao {source} e {target}.")
+    except ValueError:
+        print("Entrada invalida.")
+    except Exception as e:
+        print(f"Erro: {e}")
+
+
+def simulateOrderAllocation():
+    print("\n--- Distribuir Pedidos entre Cozinhas ---")
+    try:
+        graph = load_graph_from_json('logistics/regions.json', 'logistics/roads.json')
+        kitchens = load_kitchens('logistics/kitchens.json')
+        orders = load_orders('logistics/orders.json')
+        regions = load_regions('logistics/regions.json')
+        recipe_book = RecipeBook()
+        
+        print(f"\nDados carregados:")
+        print(f"  Regioes: {len(regions)}")
+        print(f"  Cozinhas: {len(kitchens)}")
+        print(f"  Pedidos: {len(orders)}")
+        
+        allocation_report = allocate_orders_greedy(orders, kitchens, graph, regions, recipe_book)
+        allocation = allocation_report['allocation']
+        kitchen_loads = allocation_report['kitchen_loads']
+        delayed = allocation_report['delayed_orders']
+        gargalos = allocation_report['gargalos']
+        
+        print(f"\nAlocacao Concluida:")
+        print(f"  Pedidos atendidos: {len(allocation)}/{len(orders)}")
+        print(f"  Pedidos pendentes: {len(delayed)}")
+        
+        print(f"\nCarga por Cozinha:")
+        for kitchen in kitchens:
+            kid = kitchen['id']
+            load = len(kitchen_loads.get(kid, []))
+            capacity = kitchen['capacity_per_hour'] * 24
+            util_pct = (load / capacity * 100) if capacity > 0 else 0
+            print(f"  {kid}: {load:2}/{capacity:3} pedidos ({util_pct:5.1f}%)")
+        
+        print(f"\nGargalos:")
+        if gargalos:
+            for gb in gargalos:
+                print(f"  {gb['kitchen_id']}: {gb['assigned']} pedidos > {gb['capacity']} (excesso: {gb['excess']})")
+        else:
+            print("  Nenhum gargalo identificado!")
+    except Exception as e:
+        print(f"Erro na simulacao: {e}")
+
+
+def logisticsModeMenu(book: RecipeBook):
+    while True:
+        choice = showLogisticsModeMenu()
+        
+        match choice:
+            case "1":
+                buildMST()
+            case "2":
+                calculateShortestPath()
+            case "3":
+                simulateOrderAllocation()
+            case "0":
+                print("Voltando...")
+                break
+            case _:
+                print("Opção inválida.")

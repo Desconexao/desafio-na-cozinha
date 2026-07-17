@@ -1,0 +1,10 @@
+[
+  {"id": "K1", "name": "Kitchen 1", "region_id": 1, "capacity_per_hour": 12},
+  {"id": "K2", "name": "Kitchen 2", "region_id": 4, "capacity_per_hour": 10},
+  {"id": "K3", "name": "Kitchen 3", "region_id": 7, "capacity_per_hour": 8},
+  {"id": "K4", "name": "Kitchen 4", "region_id": 10, "capacity_per_hour": 15},
+  {"id": "K5", "name": "Kitchen 5", "region_id": 13, "capacity_per_hour": 9},
+  {"id": "K6", "name": "Kitchen 6", "region_id": 17, "capacity_per_hour": 11},
+  {"id": "K7", "name": "Kitchen 7", "region_id": 22, "capacity_per_hour": 7},
+  {"id": "K8", "name": "Kitchen 8", "region_id": 28, "capacity_per_hour": 14}
+]
