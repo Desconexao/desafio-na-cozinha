@@ -3,8 +3,15 @@ from typing import cast
 from recipe import Recipe
 from vip_menu import generate_vip_menu
 from dataStructures.graph import load_graph_from_json
+from innovation.chefCompetition import simulateChefCompetition
+from innovation.reachableRecipes import findReachableRecipes
 from logistics.logistics_algorithms import mst_kruskal, dijkstra, reconstruct_path
-from logistics.logistics_planner import load_kitchens, load_orders, load_regions, allocate_orders_greedy
+from logistics.logistics_planner import (
+    load_kitchens,
+    load_orders,
+    load_regions,
+    allocate_orders_greedy,
+)
 from production.productionManager import ProductionManager
 
 
@@ -15,6 +22,7 @@ def showMenu():
     print("3. Modo Busca Rápida")
     print("4. O Pesadelo Logístico (Operação de Delivery)")
     print("5. Oficina de Produção (Dependências)")
+    print("6. Laboratório de Inovação do Chef")
     print("0. Sair")
     return input("Escolha uma opção: ")
 
@@ -65,10 +73,18 @@ def showProductionModeMenu():
     return input("Escolha uma opção: ")
 
 
+def showInnovationModeMenu():
+    print("\n=== Laboratório de Inovação do Chef ===")
+    print("1. Ver receitas alcançáveis por dependência")
+    print("2. Chef vs Chef (Minimax com 6 receitas)")
+    print("0. Voltar")
+    return input("Escolha uma opção: ")
+
+
 def verifyDependencies(book: RecipeBook):
     manager = ProductionManager(book)
     result = manager.checkAndSort()
-    
+
     if not result["viable"]:
         print("\n[!] ERRO: Inconsistência detectada!")
         cycle_names = []
@@ -77,17 +93,19 @@ def verifyDependencies(book: RecipeBook):
             cycle_names.append(r.name if r else f"ID {rid}")
         print(f"Ciclo de dependência: {' -> '.join(cycle_names)}")
     else:
-        print("\n[OK] Nenhuma inconsistência encontrada. Todas as dependências são válidas.")
+        print(
+            "\n[OK] Nenhuma inconsistência encontrada. Todas as dependências são válidas."
+        )
 
 
 def showProductionSequence(book: RecipeBook):
     manager = ProductionManager(book)
     result = manager.checkAndSort()
-    
+
     if not result["viable"]:
         print("\n[!] Impossível gerar sequência: existem ciclos de dependência.")
         return
-        
+
     print("\n--- Sequência Correta de Produção ---")
     for i, rid in enumerate(result["order"], 1):
         r = book.getRecipeById(rid)
@@ -102,10 +120,10 @@ def showPrerequisites(book: RecipeBook):
         if not recipe:
             print("Receita não encontrada.")
             return
-            
+
         manager = ProductionManager(book)
         prereqs = manager.getPrerequisites(targetId)
-        
+
         if not prereqs:
             print(f"\nA receita '{recipe.name}' não possui pré-requisitos.")
         else:
@@ -116,6 +134,67 @@ def showPrerequisites(book: RecipeBook):
                     print(f"- {r.name} (ID: {r.id})")
     except ValueError:
         print("ID inválido.")
+
+
+def showReachableRecipes(book: RecipeBook):
+    try:
+        startId = int(input("Digite o ID da receita base: "))
+    except ValueError:
+        print("ID inválido.")
+        return
+
+    recipe = book.getRecipeById(startId)
+    if not recipe:
+        print("Receita não encontrada.")
+        return
+
+    reachable = findReachableRecipes(book.listAllRecipes(), startId)
+
+    print(f"\n--- Receitas alcançáveis a partir de {recipe.name} (ID: {recipe.id}) ---")
+
+    if not reachable:
+        print("Nenhuma receita depende direta ou indiretamente desta preparação.")
+        return
+
+    for i, recipeId in enumerate(reachable, start=1):
+        reachableRecipe = book.getRecipeById(recipeId)
+        if reachableRecipe:
+            print(f"{i}. {reachableRecipe.name} (ID: {reachableRecipe.id})")
+
+
+def showChefCompetition(book: RecipeBook):
+    result = simulateChefCompetition(book.listAllRecipes(), candidateLimit=6)
+
+    print("\n--- Chef vs Chef: Minimax ---")
+    print("Avaliação da jogada: pontos do Chef - pontos do Rival.")
+
+    print("\nReceitas candidatas:")
+    for recipe in result["candidates"]:
+        score = result["scores"][recipe.id]
+        print(
+            f"- ID {recipe.id}: {recipe.name} | "
+            f"Score: {score} | Rating: {recipe.rating} | "
+            f"Cost: {recipe.cost} | PrepTime: {recipe.prepTime}"
+        )
+
+    print("\nSequência ótima prevista:")
+    for index, turn in enumerate(result["turns"], start=1):
+        recipe = turn["recipe"]
+        print(
+            f"{index}. {turn['player']} escolhe {recipe.name} "
+            f"(ID: {recipe.id}, score: {turn['score']})"
+        )
+
+    print("\nResultado estimado:")
+    print(f"Chef: {result['chef_score']}")
+    print(f"Rival: {result['rival_score']}")
+    print(f"Vantagem final do Chef: {result['final_advantage']}")
+
+    if result["turns"]:
+        firstChoice = result["turns"][0]["recipe"]
+        print(
+            f"\nMelhor primeira escolha: {firstChoice.name} " f"(ID: {firstChoice.id})"
+        )
 
 
 def searchRecipeByID(book: RecipeBook):
@@ -338,6 +417,8 @@ def runMenu(book: RecipeBook, jsonPath: str):
                 logisticsModeMenu(book)
             case "5":
                 productionModeMenu(book)
+            case "6":
+                innovationModeMenu(book)
             case "0":
                 print("Saindo...")
                 break
@@ -374,6 +455,22 @@ def productionModeMenu(book: RecipeBook):
                 showProductionSequence(book)
             case "3":
                 showPrerequisites(book)
+            case "0":
+                print("Voltando...")
+                break
+            case _:
+                print("Opção inválida.")
+
+
+def innovationModeMenu(book: RecipeBook):
+    while True:
+        choice = showInnovationModeMenu()
+
+        match choice:
+            case "1":
+                showReachableRecipes(book)
+            case "2":
+                showChefCompetition(book)
             case "0":
                 print("Voltando...")
                 break
@@ -468,9 +565,9 @@ def quickSearchModeMenu(book: RecipeBook):
 def buildMST():
     print("\n--- Planejar Rede de Hubs de Retirada ---")
     try:
-        graph = load_graph_from_json('logistics/regions.json', 'logistics/roads.json')
+        graph = load_graph_from_json("logistics/regions.json", "logistics/roads.json")
         mst_edges, mst_weight = mst_kruskal(graph)
-        
+
         print(f"\nArvore Geradora Minima Construida!")
         print(f"  Regioes: {len(graph.nodes())}")
         print(f"  Conexoes: {len(mst_edges)} (esperado: {len(graph.nodes()) - 1})")
@@ -485,18 +582,18 @@ def buildMST():
 def calculateShortestPath():
     print("\n--- Calcular Rota do Entregador ---")
     try:
-        graph = load_graph_from_json('logistics/regions.json', 'logistics/roads.json')
-        
+        graph = load_graph_from_json("logistics/regions.json", "logistics/roads.json")
+
         source = int(input("Regiao de saida (1-30): "))
         target = int(input("Regiao de destino (1-30): "))
-        
+
         if source not in graph.nodes() or target not in graph.nodes():
             print("Regioes invalidas.")
             return
-        
+
         distances, parents = dijkstra(graph, source)
         path = reconstruct_path(parents, source, target)
-        
+
         if path:
             print(f"\nRota encontrada: {' -> '.join(map(str, path))}")
             print(f"Tempo total: {distances[target]:.1f} minutos")
@@ -511,39 +608,43 @@ def calculateShortestPath():
 def simulateOrderAllocation():
     print("\n--- Distribuir Pedidos entre Cozinhas ---")
     try:
-        graph = load_graph_from_json('logistics/regions.json', 'logistics/roads.json')
-        kitchens = load_kitchens('logistics/kitchens.json')
-        orders = load_orders('logistics/orders.json')
-        regions = load_regions('logistics/regions.json')
+        graph = load_graph_from_json("logistics/regions.json", "logistics/roads.json")
+        kitchens = load_kitchens("logistics/kitchens.json")
+        orders = load_orders("logistics/orders.json")
+        regions = load_regions("logistics/regions.json")
         recipe_book = RecipeBook()
-        
+
         print(f"\nDados carregados:")
         print(f"  Regioes: {len(regions)}")
         print(f"  Cozinhas: {len(kitchens)}")
         print(f"  Pedidos: {len(orders)}")
-        
-        allocation_report = allocate_orders_greedy(orders, kitchens, graph, regions, recipe_book)
-        allocation = allocation_report['allocation']
-        kitchen_loads = allocation_report['kitchen_loads']
-        delayed = allocation_report['delayed_orders']
-        gargalos = allocation_report['gargalos']
-        
+
+        allocation_report = allocate_orders_greedy(
+            orders, kitchens, graph, regions, recipe_book
+        )
+        allocation = allocation_report["allocation"]
+        kitchen_loads = allocation_report["kitchen_loads"]
+        delayed = allocation_report["delayed_orders"]
+        gargalos = allocation_report["gargalos"]
+
         print(f"\nAlocacao Concluida:")
         print(f"  Pedidos atendidos: {len(allocation)}/{len(orders)}")
         print(f"  Pedidos pendentes: {len(delayed)}")
-        
+
         print(f"\nCarga por Cozinha:")
         for kitchen in kitchens:
-            kid = kitchen['id']
+            kid = kitchen["id"]
             load = len(kitchen_loads.get(kid, []))
-            capacity = kitchen['capacity_per_hour'] * 24
+            capacity = kitchen["capacity_per_hour"] * 24
             util_pct = (load / capacity * 100) if capacity > 0 else 0
             print(f"  {kid}: {load:2}/{capacity:3} pedidos ({util_pct:5.1f}%)")
-        
+
         print(f"\nGargalos:")
         if gargalos:
             for gb in gargalos:
-                print(f"  {gb['kitchen_id']}: {gb['assigned']} pedidos > {gb['capacity']} (excesso: {gb['excess']})")
+                print(
+                    f"  {gb['kitchen_id']}: {gb['assigned']} pedidos > {gb['capacity']} (excesso: {gb['excess']})"
+                )
         else:
             print("  Nenhum gargalo identificado!")
     except Exception as e:
@@ -553,7 +654,7 @@ def simulateOrderAllocation():
 def logisticsModeMenu(book: RecipeBook):
     while True:
         choice = showLogisticsModeMenu()
-        
+
         match choice:
             case "1":
                 buildMST()
